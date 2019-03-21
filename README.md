@@ -6,9 +6,14 @@
 
 ### Categories
 
+* [CircleCI](#circleci)
 * [Git](#git)
 * [Homebrew](#homebrew)
 * [Ruby](#ruby)
+
+### CircleCI
+
+* [CircleCIの設定ファイルをローカルで検証する](circleci/local_config_validate.md)
 
 ### Git
 
@@ -16,7 +21,7 @@
 
 ### Homebrew
 
-- [インストールしたソフトウェアをファイルに書き出す](homebrew/brew_bundle_dump.md)
+* [インストールしたソフトウェアをファイルに書き出す](homebrew/brew_bundle_dump.md)
 
 ### Ruby
 
