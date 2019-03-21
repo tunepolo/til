@@ -8,6 +8,7 @@
 
 * [Git](#git)
 * [Homebrew](#homebrew)
+* [Ruby](#ruby)
 
 ### Git
 
@@ -16,3 +17,7 @@
 ### Homebrew
 
 - [インストールしたソフトウェアをファイルに書き出す](homebrew/brew_bundle_dump.md)
+
+### Ruby
+
+* [rbenvで入れたgemをまとめて更新する](ruby/rbenv-each.md)
