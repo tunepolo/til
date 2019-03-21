@@ -35,5 +35,4 @@
 
 ### Ruby
 
-* [rbenvを使ったrubyのインストール](ruby/ruby-install-via-rbenv.md)
-* [rbenvで入れたgemをまとめて更新する](ruby/rbenv-each.md)
+* [rbenvの基本操作](ruby/rbenv_basic.md)
