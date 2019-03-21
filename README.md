@@ -10,6 +10,7 @@
 * [Docker](#docker)
 * [Git](#git)
 * [Homebrew](#homebrew)
+* [Rails](#rails)
 * [Ruby](#ruby)
 
 ### CircleCI
@@ -27,6 +28,10 @@
 ### Homebrew
 
 * [インストールしたソフトウェアをファイルに書き出す](homebrew/brew_bundle_dump.md)
+
+### Rails
+
+* [Railsコマンドの基本操作](rails/basic_command.md)
 
 ### Ruby
 
