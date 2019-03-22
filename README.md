@@ -26,6 +26,7 @@
 ### Cygwin
 
 * [/etc/passwdを作成する](cygwin/create_etc_passwd.md)
+* [フォルダーの右クリックからCygwinを開くメニューを追加する](cygwin/open_from_context_menu.md)
 
 ### Docker
 
