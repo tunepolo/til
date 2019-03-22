@@ -13,6 +13,7 @@
 * [Homebrew](#homebrew)
 * [Rails](#rails)
 * [Ruby](#ruby)
+* [Windows](#windows)
 
 ### CircleCI
 
@@ -41,3 +42,7 @@
 ### Ruby
 
 * [rbenvの基本操作](ruby/rbenv_basic.md)
+
+### Windows
+
+* [エクスプローラーのアドレスバーは"ファイル名を指定して実行"と同じことができる](windows/explorer_address_bar.md)
