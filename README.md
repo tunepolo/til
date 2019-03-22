@@ -44,7 +44,7 @@
 
 * [rbenvの基本操作](ruby/rbenv_basic.md)
 
-### VisualStudio
+### Visual Studio
 
 * [コンパイル時の警告を抑制する](visualstudio/suppress_warning.md)
 
