@@ -11,9 +11,9 @@
 * [Git](#git)
 * [Heroku](#heroku)
 * [Homebrew](#homebrew)
-* [Rails](#rails)
 * [Ruby](#ruby)
-* [VisualStudio](#visual-studio)
+* [Ruby On Rails](#ruby-on-rails)
+* [Visual Studio](#visual-studio)
 * [Windows](#windows)
 
 ### CircleCI
@@ -36,13 +36,13 @@
 
 * [インストールしたソフトウェアをファイルに書き出す](homebrew/brew_bundle_dump.md)
 
-### Rails
-
-* [Railsコマンドの基本操作](rails/basic_command.md)
-
 ### Ruby
 
 * [rbenvの基本操作](ruby/rbenv_basic.md)
+
+### Ruby on Rails
+
+* [Railsコマンドの基本操作](rails/basic_command.md)
 
 ### Visual Studio
 
