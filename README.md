@@ -47,6 +47,7 @@
 ### Visual Studio
 
 * [コンパイル時の警告を抑制する](visualstudio/suppress_warning.md)
+* [ライブラリリンク時に'pdbファイルがない'警告を抑制する](visualstudio/suppress_pdf_missing_warning.md)
 
 ### Windows
 
