@@ -28,6 +28,7 @@
 
 ### Git
 
+* [自己証明書でホストされたgitリポジトリにアクセスする](git/ignore_ssl_verify.md)
 * [git submoduleで管理しているリポジトリをリモートの最新に追従させる](git/submodule_pull_origin_master.md)
 
 ### Heroku
