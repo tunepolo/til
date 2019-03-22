@@ -11,6 +11,7 @@
 * [Git](#git)
 * [Heroku](#heroku)
 * [Homebrew](#homebrew)
+* [Jenkins](#jenkins)
 * [npm](#npm)
 * [Ruby](#ruby)
 * [Ruby On Rails](#ruby-on-rails)
@@ -36,6 +37,10 @@
 ### Homebrew
 
 * [インストールしたソフトウェアをファイルに書き出す](homebrew/brew_bundle_dump.md)
+
+### Jenkins
+
+* [自動ログアウトまでの時間を長くする](jenkins/change_session_timeout.md)
 
 ### npm
 
