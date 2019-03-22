@@ -42,12 +42,12 @@
 
 ### Ruby on Rails
 
-* [Railsコマンドの基本操作](rails/basic_command.md)
+* [Railsコマンドの基本操作](ruby-on-rails/basic_command.md)
 
 ### Visual Studio
 
-* [コンパイル時の警告を抑制する](visualstudio/suppress_warning.md)
-* [ライブラリリンク時に'pdbファイルがない'警告を抑制する](visualstudio/suppress_pdf_missing_warning.md)
+* [コンパイル時の警告を抑制する](visual-studio/suppress_warning.md)
+* [ライブラリリンク時に'pdbファイルがない'警告を抑制する](visual-studio/suppress_pdf_missing_warning.md)
 
 ### Windows
 
