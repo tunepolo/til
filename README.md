@@ -11,6 +11,7 @@
 * [Git](#git)
 * [Heroku](#heroku)
 * [Homebrew](#homebrew)
+* [npm](#npm)
 * [Ruby](#ruby)
 * [Ruby On Rails](#ruby-on-rails)
 * [Visual Studio](#visual-studio)
@@ -35,6 +36,10 @@
 ### Homebrew
 
 * [インストールしたソフトウェアをファイルに書き出す](homebrew/brew_bundle_dump.md)
+
+### npm
+
+* [npmのバージョンを上げる](npm/npm_global_verup.md)
 
 ### Ruby
 
