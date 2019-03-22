@@ -13,6 +13,7 @@
 * [Homebrew](#homebrew)
 * [Rails](#rails)
 * [Ruby](#ruby)
+* [VisualStudio](#visualstudio)
 * [Windows](#windows)
 
 ### CircleCI
@@ -42,6 +43,10 @@
 ### Ruby
 
 * [rbenvの基本操作](ruby/rbenv_basic.md)
+
+### VisualStudio
+
+* [コンパイル時の警告を抑制する](visualstudio/surpress_warning.md)
 
 ### Windows
 
