@@ -46,7 +46,7 @@
 
 ### VisualStudio
 
-* [コンパイル時の警告を抑制する](visualstudio/surpress_warning.md)
+* [コンパイル時の警告を抑制する](visualstudio/suppress_warning.md)
 
 ### Windows
 
