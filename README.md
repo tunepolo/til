@@ -45,4 +45,5 @@
 
 ### Windows
 
+* [CapsキーをCtrlにし、元のCtrlキーもそのままにするレジストリ設定](windows/caps_to_ctrl.md)
 * [エクスプローラーのアドレスバーは"ファイル名を指定して実行"と同じことができる](windows/explorer_address_bar.md)
