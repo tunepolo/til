@@ -13,7 +13,7 @@
 * [Homebrew](#homebrew)
 * [Rails](#rails)
 * [Ruby](#ruby)
-* [VisualStudio](#visualstudio)
+* [VisualStudio](#visual-studio)
 * [Windows](#windows)
 
 ### CircleCI
