@@ -37,6 +37,7 @@
 
 * [アクセス権の扱い](git/access_right_handling.md)
 * [自己証明書でホストされたgitリポジトリにアクセスする](git/ignore_ssl_verify.md)
+* [git submoduleで管理しているリポジトリを削除する](git/submodule_delete.md)
 * [git submoduleで管理しているリポジトリをリモートの最新に追従させる](git/submodule_pull_origin_master.md)
 
 ### Gitbook
