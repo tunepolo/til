@@ -14,6 +14,7 @@
 * [Heroku](#heroku)
 * [Homebrew](#homebrew)
 * [Jenkins](#jenkins)
+* [Management](#management)
 * [npm](#npm)
 * [Ruby](#ruby)
 * [Ruby On Rails](#ruby-on-rails)
@@ -56,6 +57,10 @@
 ### Jenkins
 
 * [自動ログアウトまでの時間を長くする](jenkins/change_session_timeout.md)
+
+### Management
+
+* [X理論とY理論](management/xtheory_and_ytheory.md)
 
 ### npm
 
