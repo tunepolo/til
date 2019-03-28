@@ -60,6 +60,7 @@
 
 ### Management
 
+* [タックマンモデル](management/tuckman_model.md)
 * [X理論とY理論](management/xtheory_and_ytheory.md)
 
 ### npm
