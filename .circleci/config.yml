@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  node: circleci/node@0.0.8
+
 executors:
   default:
     working_directory: ~/workspace
@@ -7,12 +10,16 @@ executors:
       - image: circleci/node:11
 
 jobs:
-  lint:
+  textlint:
     executor:
       name: default
     steps:
       - checkout
-      - run: npm install
+      - node/with-cache:
+          dir: ~/workspace/node_modules
+          cache-version: v1
+          steps:
+          - run: npm install
       - run:
           name: run textlint if markdown changed
           environment:
@@ -30,6 +37,6 @@ jobs:
             fi
 
 workflows:
-  textlint:
+  build:
     jobs:
-      - lint
+      - textlint
