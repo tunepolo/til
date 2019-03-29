@@ -1,14 +1,14 @@
 # clocでgit管理下にあるファイルだけを対象とする
 
-clocでは`vcs`オプションがあり、git配下にあるファイルのみを対象とすることができる。
+clocでは`vcs`オプションがあり、git配下にあるファイルのみを対象とできる。
 
 * [Respect .gitignore · Issue #49 · AlDanial/cloc](https://github.com/AlDanial/cloc/issues/49)
 
 ```shell
 $ cloc --vcs=git
-     169 text files.
-     163 unique files.
-      36 files ignored.
+    169 text files.
+    163 unique files.
+    36 files ignored.
 
 github.com/AlDanial/cloc v 1.80  T=0.35 s (439.0 files/s, 10178.5 lines/s)
 -------------------------------------------------------------------------------
@@ -34,16 +34,16 @@ clocのオプションを設定するよりはgitのサブコマンドをエイ�
 ```
 # ~/.gitconfig
 [alias]
-  cloc = !cloc $(git ls-files)
+    cloc = !cloc $(git ls-files)
 ```
 
 `$ cloc --vcs=git`と同じ結果が出る。
 
 ```
 $ git cloc
-     169 text files.
-     163 unique files.
-      36 files ignored.
+    169 text files.
+    163 unique files.
+    36 files ignored.
 
 github.com/AlDanial/cloc v 1.80  T=0.10 s (1558.7 files/s, 36142.7 lines/s)
 -------------------------------------------------------------------------------
