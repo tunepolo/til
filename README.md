@@ -2,6 +2,8 @@
 
 ✍ Today I Learned
 
+読点が、3つ以上の、文にしておくと、GitHubに、コメントが、つくはず。
+
 ---
 
 ### Categories
