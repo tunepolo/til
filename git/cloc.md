@@ -6,9 +6,9 @@ clocでは`vcs`オプションがあり、git配下にあるファイルのみ�
 
 ```shell
 $ cloc --vcs=git
-     169 text files.
-     163 unique files.
-      36 files ignored.
+    169 text files.
+    163 unique files.
+    36 files ignored.
 
 github.com/AlDanial/cloc v 1.80  T=0.35 s (439.0 files/s, 10178.5 lines/s)
 -------------------------------------------------------------------------------
@@ -34,16 +34,16 @@ clocのオプションを設定するよりはgitのサブコマンドをエイ�
 ```
 # ~/.gitconfig
 [alias]
-  cloc = !cloc $(git ls-files)
+    cloc = !cloc $(git ls-files)
 ```
 
 `$ cloc --vcs=git`と同じ結果が出る。
 
 ```
 $ git cloc
-     169 text files.
-     163 unique files.
-      36 files ignored.
+    169 text files.
+    163 unique files.
+    36 files ignored.
 
 github.com/AlDanial/cloc v 1.80  T=0.10 s (1558.7 files/s, 36142.7 lines/s)
 -------------------------------------------------------------------------------
