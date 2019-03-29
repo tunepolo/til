@@ -1,6 +1,6 @@
 # clocでgit管理下にあるファイルだけを対象とする
 
-clocでは`vcs`オプションがあり、git配下にあるファイルのみを対象とすることができる。
+clocでは`vcs`オプションがあり、git配下にあるファイルのみを対象とできる。
 
 * [Respect .gitignore · Issue #49 · AlDanial/cloc](https://github.com/AlDanial/cloc/issues/49)
 
