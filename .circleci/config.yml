@@ -1,9 +1,15 @@
-version: 2
-jobs:
-  build:
-    working_directory: ~/project
+version: 2.1
+
+executors:
+  default:
+    working_directory: ~/workspace
     docker:
-      - image: circleci/node:8
+      - image: circleci/node:11
+
+jobs:
+  lint:
+    executor:
+      name: default
     steps:
       - checkout
       - run: npm install
@@ -22,3 +28,8 @@ jobs:
                   | reviewdog -f=checkstyle -name="textlint" -ci="circle-ci"
               fi
             fi
+
+workflows:
+  textlint:
+    jobs:
+      - lint
