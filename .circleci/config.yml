@@ -1,0 +1,42 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@0.0.8
+
+executors:
+  default:
+    working_directory: ~/workspace
+    docker:
+      - image: circleci/node:11
+
+jobs:
+  textlint:
+    executor:
+      name: default
+    steps:
+      - checkout
+      - node/with-cache:
+          dir: ~/workspace/node_modules
+          cache-version: v1
+          steps:
+          - run: npm install
+      - run:
+          name: run textlint if markdown changed
+          environment:
+            REVIEWDOG_VERSION: "0.9.8"
+          command: |
+            cond="git diff --name-only --diff-filter=ACMR origin/master | grep -a '.*.md$'"
+            if eval $cond >/dev/null; then
+              if ! eval $cond | xargs $(npm bin)/textlint -f pretty-error; then
+                mkdir -p ~/bin/ && export PATH="~/bin/:$PATH"
+                curl -fSL https://github.com/haya14busa/reviewdog/releases/download/$REVIEWDOG_VERSION/reviewdog_linux_amd64 -o ~/bin/reviewdog && chmod +x ~/bin/reviewdog
+                git diff --name-only --diff-filter=ACMR origin/master | grep -a '.*.md$' \
+                  | xargs $(npm bin)/textlint -f checkstyle \
+                  | reviewdog -f=checkstyle -name="textlint" -ci="circle-ci"
+              fi
+            fi
+
+workflows:
+  build:
+    jobs:
+      - textlint
