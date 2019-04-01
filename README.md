@@ -6,6 +6,7 @@
 
 ### Categories
 
+* [Algorithm](#algorithm)
 * [CircleCI](#circleci)
 * [Cygwin](#cygwin)
 * [Docker](#docker)
@@ -20,6 +21,10 @@
 * [Ruby On Rails](#ruby-on-rails)
 * [Visual Studio](#visual-studio)
 * [Windows](#windows)
+
+### Algorithm
+
+* [レーベンシュタイン距離](algorithm/levenstein_distance.md)
 
 ### CircleCI
 
