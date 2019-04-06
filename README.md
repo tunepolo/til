@@ -15,6 +15,7 @@
 * [Heroku](#heroku)
 * [Homebrew](#homebrew)
 * [Jenkins](#jenkins)
+* [Mac](#mac)
 * [Management](#management)
 * [npm](#npm)
 * [Ruby](#ruby)
@@ -62,6 +63,10 @@
 ### Jenkins
 
 * [自動ログアウトまでの時間を長くする](jenkins/change_session_timeout.md)
+
+### Mac
+
+* [ControlキーとCaps Lockキーを入れ替える](mac/swap_ctrl_caps.md)
 
 ### Management
 
