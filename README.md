@@ -60,6 +60,10 @@
 
 * [インストールしたソフトウェアをファイルに書き出す](homebrew/brew_bundle_dump.md)
 
+### iTerm2
+
+* [Hotkeyを有効化する](iterm2/enable_hotkey.md)
+
 ### Jenkins
 
 * [自動ログアウトまでの時間を長くする](jenkins/change_session_timeout.md)
