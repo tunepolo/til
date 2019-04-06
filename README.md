@@ -7,6 +7,7 @@
 ### Categories
 
 * [Algorithm](#algorithm)
+* [CentOS](#centos)
 * [CircleCI](#circleci)
 * [Cygwin](#cygwin)
 * [Docker](#docker)
@@ -26,6 +27,10 @@
 ### Algorithm
 
 * [レーベンシュタイン距離](algorithm/levenstein_distance.md)
+
+### CentOS
+
+* [バージョンの確認方法](centos/version_check.md)
 
 ### CircleCI
 
