@@ -35,6 +35,7 @@
 ### CircleCI
 
 * [CircleCIの設定ファイルをローカルで検証する](circleci/local_config_validate.md)
+* [globstarを使う](circleci/use_globstar.md)
 
 ### Cygwin
 
