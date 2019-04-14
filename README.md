@@ -73,6 +73,7 @@
 ### iTerm2
 
 * [Hotkeyを有効化する](iterm2/enable_hotkey.md)
+* [ステータスバーを表示する](iterm2/enable_status_bar.md)
 
 ### Jenkins
 
