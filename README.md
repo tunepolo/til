@@ -37,6 +37,7 @@
 
 ### CircleCI
 
+* [連続してトリガーされたビルドを自動キャンセルする](circlei/auto-cancel_redundant_builds.md)
 * [CircleCIの設定ファイルをローカルで検証する](circleci/local_config_validate.md)
 * [globstarを使う](circleci/use_globstar.md)
 
