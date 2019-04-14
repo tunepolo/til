@@ -17,6 +17,7 @@
 * [Gitbook](#gitbook)
 * [Heroku](#heroku)
 * [Homebrew](#homebrew)
+* [iTerm2](#iterm2)
 * [Jenkins](#jenkins)
 * [Mac](#mac)
 * [Management](#management)
