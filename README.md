@@ -81,6 +81,7 @@
 
 ### Mac
 
+* [画面キャプチャを撮る](mac/capture.md)
 * [ControlキーとCaps Lockキーを入れ替える](mac/swap_ctrl_caps.md)
 
 ### Management
