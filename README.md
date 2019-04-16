@@ -96,6 +96,10 @@
 
 * [npmのバージョンを上げる](npm/npm_global_verup.md)
 
+### PHP
+
+* [PHPのヘンテコ仕様](php/php_strange_spec.md)
+
 ### Ruby
 
 * [rbenvの基本操作](ruby/rbenv_basic.md)
