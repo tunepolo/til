@@ -59,3 +59,17 @@ echo true ? 1 : false ? 2 : 0;  // 2が出力される。
 
 `require`と`include`がある。前者はファイルがなければ`Fatal Error`を返す。後者は`Warning`となる。
 どちらも読んだ回数だけ実行されるため、ライブラリ読み込みのように1度きり読み込む際は`require_once`か`include_once`を使う。
+
+## 宣言していないプロパティにアクセスできる。
+
+プロパティ名のtypoをしたらハマりそう…
+
+```php
+class Hoge
+{
+    // ...
+}
+
+$foo = new Hoge();
+$foo->bar = "hogehoge"; // barプロパティが作成される
+```
