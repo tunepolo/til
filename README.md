@@ -9,6 +9,7 @@
 ### Categories
 
 * [Algorithm](#algorithm)
+* [AWS](#aws)
 * [CentOS](#centos)
 * [CircleCI](#circleci)
 * [Cygwin](#cygwin)
@@ -30,6 +31,10 @@
 ### Algorithm
 
 * [レーベンシュタイン距離](algorithm/levenstein_distance.md)
+
+### AWS
+
+* [リージョンとAZ](aws/region_and_az.md)
 
 ### CentOS
 
