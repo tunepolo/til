@@ -120,6 +120,7 @@
 * [クロスサイトリクエストフォージェリ(CSRF))](security/csrf.md)
 * [SQLインジェクション](security/sql_injection.md)
 * [セッションハイジャック](security/session_hijack.md)
+* [HTTPヘッダインジェクション](security/http_header_injection.md)
 
 ### Visual Studio
 
