@@ -122,6 +122,7 @@
 * [セッションハイジャック](security/session_hijack.md)
 * [HTTPヘッダインジェクション](security/http_header_injection.md)
 * [Nullバイト攻撃](security/null_byte_attack.md)
+* [ディレクトリトラバーサル](security/directory_traversal.md)
 
 ### Visual Studio
 
