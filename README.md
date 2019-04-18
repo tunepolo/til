@@ -119,6 +119,7 @@
 * [スクリプトインジェクション / クロスサイトスクリプティング(XSS)](security/script_injection.md)
 * [クロスサイトリクエストフォージェリ(CSRF))](security/csrf.md)
 * [SQLインジェクション](security/sql_injection.md)
+* [セッションハイジャック](security/session_hijack.md)
 
 ### Visual Studio
 
