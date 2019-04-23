@@ -47,6 +47,7 @@
 * [CircleCIの設定ファイルをローカルで検証する](circleci/local_config_validate.md)
 * [globstarを使う](circleci/use_globstar.md)
 * [2.1形式のファイルを2.0形式に変換する](circleci/convert_20_to_21.md)
+* [設定ファイルを分割する](circleci/separate_config.md)
 
 ### Cygwin
 
