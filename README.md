@@ -65,6 +65,7 @@
 * [git secretsの基本操作](git/basic_secrets.md)
 * [git submoduleで管理しているリポジトリを削除する](git/submodule_delete.md)
 * [git submoduleで管理しているリポジトリをリモートの最新に追従させる](git/submodule_pull_origin_master.md)
+* [ブランチ名に別名をつける](git/symbolic-ref.md)
 
 ### Gitbook
 
