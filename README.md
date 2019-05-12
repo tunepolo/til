@@ -9,6 +9,7 @@
 ### Categories
 
 * [Algorithm](#algorithm)
+* [Architecture](#architecture)
 * [AWS](#aws)
 * [CentOS](#centos)
 * [CircleCI](#circleci)
@@ -32,6 +33,10 @@
 ### Algorithm
 
 * [レーベンシュタイン距離](algorithm/levenstein_distance.md)
+
+### Architecture
+
+* [ストラングラーパターン](architecture/strangler_pattern.md)
 
 ### AWS
 
