@@ -27,6 +27,7 @@
 * [Ruby](#ruby)
 * [Ruby On Rails](#ruby-on-rails)
 * [Security](#security)
+* [SEO](#seo)
 * [Visual Studio](#visual-studio)
 * [Windows](#windows)
 
@@ -134,6 +135,10 @@
 * [ディレクトリトラバーサル](security/directory_traversal.md)
 * [ファイルアップロード攻撃](security/file_upload_attack.md)
 * [OSコマンドインジェクション](security/os_command_injection.md)
+
+### SEO
+
+* [SERP](seo/serp.md)
 
 ### Visual Studio
 
