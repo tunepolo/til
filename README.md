@@ -107,6 +107,7 @@
 * [RACI](management/raci.md)
 * [タックマンモデル](management/tuckman_model.md)
 * [X理論とY理論](management/xtheory_and_ytheory.md)
+* [カマスの実験](management/barracuda_experiment.md)
 
 ### npm
 
