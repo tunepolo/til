@@ -29,6 +29,7 @@
 * [Security](#security)
 * [SEO](#seo)
 * [Visual Studio](#visual-studio)
+* [Web](#web)
 * [Windows](#windows)
 
 ### Algorithm
@@ -145,6 +146,10 @@
 
 * [コンパイル時の警告を抑制する](visual-studio/suppress_warning.md)
 * [ライブラリリンク時に'pdbファイルがない'警告を抑制する](visual-studio/suppress_pdf_missing_warning.md)
+
+### Web
+
+* [パフォーマンスバジェット](web/performance_budget.md)
 
 ### Windows
 
