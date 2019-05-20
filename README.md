@@ -102,6 +102,7 @@
 * [画面キャプチャを撮る](mac/capture.md)
 * [ControlキーとCaps Lockキーを入れ替える](mac/swap_ctrl_caps.md)
 * [ウィンドウを並べて表示する](mac/split_view.md)
+* [Finderで隠しファイルを表示する](mac/show_secret_file_in_finder.md)
 
 ### Management
 
