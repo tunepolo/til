@@ -49,6 +49,10 @@
 
 * [バージョンの確認方法](centos/version_check.md)
 
+### Chrome
+
+* [Chromeのデバッガーを使う](chrome/use_debugger.md)
+
 ### CircleCI
 
 * [連続してトリガーされたビルドを自動キャンセルする](circlei/auto-cancel_redundant_builds.md)
