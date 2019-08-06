@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/tunepolo/til#readme",
   "devDependencies": {
-    "editorconfig-checker": "^2.1.1",
+    "editorconfig-checker": "^2.2.0",
     "textlint": "^11.3.0",
     "textlint-rule-preset-ja-technical-writing": "^3.1.3"
   }
