@@ -4,6 +4,7 @@
   "description": "✍ Today I Learned",
   "main": "index.js",
   "scripts": {
+		"algolia": "atomic-algolia",
     "textlint": "npx textlint content/**/*.md",
     "textlint:ci": "npx textlint -f checkstyle content/**/*.md",
     "textlint:fix": "npx textlint --fix content/**/*.md"
@@ -20,6 +21,7 @@
   },
   "homepage": "https://github.com/tunepolo/til#readme",
   "devDependencies": {
+    "atomic-algolia": "^0.3.17",
     "editorconfig-checker": "^3.0.4",
     "textlint": "^11.6.3",
     "textlint-filter-rule-comments": "^1.2.2",
