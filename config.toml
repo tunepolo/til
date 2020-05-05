@@ -1,4 +1,4 @@
-baseURL = "https://tunepolo.github.io/til"
+baseURL = "https://tunepolo.github.io/til/"
 
 languageCode = "ja-jp"
 DefaultContentLanguage = "ja"
