@@ -1,0 +1,38 @@
+baseURL = "https://tunepolo.github.io/til"
+
+languageCode = "ja-jp"
+DefaultContentLanguage = "ja"
+title = "Today 'tunepolo' Leaned"
+theme = "hugo-theme-techdoc"
+googleAnalytics = ""
+
+hasCJKLanguage = "true"
+enableGitInfo = "true"
+
+[params]
+    github_repository = "https://github.com/tunepolo/til"
+    github_doc_repository = "https://github.com/tunepolo/til"
+
+    menu_style = "slide-menu"
+
+    # Theme color
+    # See color value reference https://developer.mozilla.org/en-US/docs/Web/CSS/color
+    custom_font_color = ""
+    custom_background_color = ""
+
+[menu]
+    [[menu.main]]
+        name = "Home"
+        url = "/"
+        weight = 1
+
+# Markup configure section
+# See https://gohugo.io/getting-started/configuration-markup/
+[markup]
+    defaultMarkdownHandler = "goldmark"
+    [markup.goldmark.renderer]
+        unsafe= true
+    [markup.tableOfContents]
+        startLevel = 2
+        endLevel = 4
+        ordered = false
