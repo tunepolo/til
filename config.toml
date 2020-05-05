@@ -24,11 +24,23 @@ enableGitInfo = "true"
     custom_font_color = ""
     custom_background_color = "#cc7db1"
 
+    # Algolia site search section
+    # See https://www.algolia.com/doc/
+    algolia_search_enable = true
+    algolia_indexName = "til"
+    algolia_appId = "8SF8KJJWGW"
+    algolia_apiKey = "42e69eff6e94918d7cb871bcbe88cc1e" # Search-Only API Key
+
 [menu]
     [[menu.main]]
         name = "Home"
         url = "/"
         weight = 1
+
+    [[menu.main]]
+        name = "Search"
+        url = "/search"
+        weight = 2
 
 # Markup configure section
 # See https://gohugo.io/getting-started/configuration-markup/
@@ -40,3 +52,27 @@ enableGitInfo = "true"
         startLevel = 2
         endLevel = 4
         ordered = false
+
+# Algolia Search configure section
+[outputFormats.Algolia]
+    baseName = "algolia"
+    isPlainText = true
+    mediaType = "application/json"
+    notAlternative = true
+
+[params.algolia]
+    vars = [
+        "title",
+        "summary",
+        "content",
+        "date",
+        "publishdate",
+        "description",
+        "permalink",
+        "keywords",
+        "lastmod",
+    ]
+    params = [
+        "tags",
+        "categories",
+    ]
