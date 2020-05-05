@@ -24,6 +24,11 @@ enableGitInfo = "true"
     custom_font_color = ""
     custom_background_color = "#cc7db1"
 
+    # path name excluded from documentation menu
+    menu_exclusion = [
+        "search",
+    ]
+
     # Algolia site search section
     # See https://www.algolia.com/doc/
     algolia_search_enable = true
