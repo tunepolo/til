@@ -1,0 +1,34 @@
+name: upload algolia index
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-18.04
+    steps:
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+
+      - name: npm install
+        run: |
+          npm install
+
+      - name: Build
+        run: hugo --minify
+
+      - name: upload index to algolia
+        run: |
+          ALGOLIA_APP_ID={{ secrets.ALGOLIA_APP_ID}} ALGOLIA_ADMIN_KEY={{ secrets.ALGOLIA_ADMIN_KEY }} ALGOLIA_INDEX_NAME="til" ALGOLIA_INDEX_FILE="./public/algolia.json" npm run algolia
+      - name: lint
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          npm run textlint:ci | ./bin/reviewdog -f=checkstyle -name=textlint -reporter=github-pr-review

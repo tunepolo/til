@@ -53,6 +53,9 @@ enableGitInfo = "true"
         endLevel = 4
         ordered = false
 
+[outputs]
+home = ["HTML", "RSS", "Algolia"]
+
 # Algolia Search configure section
 [outputFormats.Algolia]
     baseName = "algolia"
