@@ -11,6 +11,14 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: '0.68.3'
+
+      - name: Build
+        run: hugo --minify
+
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
@@ -19,9 +27,6 @@ jobs:
       - name: npm install
         run: |
           npm install
-
-      - name: Build
-        run: hugo --minify
 
       - name: upload index to algolia
         run: |
