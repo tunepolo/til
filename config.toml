@@ -22,7 +22,7 @@ enableGitInfo = "true"
     # Theme color
     # See color value reference https://developer.mozilla.org/en-US/docs/Web/CSS/color
     custom_font_color = ""
-    custom_background_color = ""
+    custom_background_color = "#cc7db1"
 
 [menu]
     [[menu.main]]
