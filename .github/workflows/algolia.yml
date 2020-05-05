@@ -31,12 +31,12 @@ jobs:
         run: |
           npm install
 
-      - name: upload index to algolia
-				env:
-					ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID}}
-					ALGOLIA_ADMINKEY: ${{ secrets.ALGOLIA_ADMIN_KEY }}
-					ALGOLIA_INDEX_NAME: "til"
-					ALGOLIA_INDEX_FILE: "./public/algolia.json"
+      - name: upload index to algoli
+        env:
+          ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID}}
+          ALGOLIA_ADMINKEY: ${{ secrets.ALGOLIA_ADMIN_KEY }}
+          ALGOLIA_INDEX_NAME: "til"
+          ALGOLIA_INDEX_FILE: "./public/algolia.json"
         run: |
           npm run algolia
       - name: lint
