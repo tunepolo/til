@@ -7,4 +7,6 @@ title = "Hotkeyを有効化する"
 3. 設定画面の `General` で `Only Restore Hotkey Window`を選択する。
 4. 設定画面の `Profiles` で外観を設定する。
 
+<!-- textlint-disable -->
 * [iTerm2のHotkeyを使わないなんてもったいない！！ - Qiita](https://qiita.com/okamu_/items/a5086d2d5ba405f35acb)
+<!-- textlint-enable -->

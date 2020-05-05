@@ -2,7 +2,7 @@
 title = "ステータスバーを表示する"
 +++
 
-下記で有効化することができる。
+下記で有効化できる。
 
 ```
 Preferences > Profiles > Session > Status bar enabled > Configure Status Bar

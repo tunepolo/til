@@ -6,10 +6,14 @@ title = "RACI"
 
 ## RACIの定義
 
+<!-- textlint-disable -->
+
 | R | 実行責任者(Responsible) | タスクの実行に責任を持つ者 |
 | A | 説明責任者(Accountable) | ステークホルダーから進捗・状況を聞かれた際に説明する責任を持つ者 |
 | C | 協議先(Consulted) | タスクの実行に関するアドバイスを行う者 |
 | I | 報告先(Informed) | タスクの進捗報告を受ける者 |
+
+<!-- textlint-enable -->
 
 ## チャートの作り方
 

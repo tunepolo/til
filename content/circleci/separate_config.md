@@ -2,7 +2,7 @@
 title = "設定ファイルを分割する"
 +++
 
-`circleci config pack`コマンドで結合することができる。
+`circleci config pack`コマンドで結合できる。
 ファイルの配置は結合後のYAMLのキー・設定値と対応させる必要がある。
 
 ```

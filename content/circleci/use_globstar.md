@@ -8,4 +8,8 @@ CircleCIではbashが使われるが、bashでは明示的に`shopt -s globstar`
 
 globstarを使う場合、`circleci tests glob "**/*.rb"`のように記述する。
 
+<!-- textlint-disable -->
+
 * [bashとzshとglobstar | r7kamura on Patreon](https://www.patreon.com/posts/bashtozshtoglobs-25141912)
+
+<!-- textlint-enable -->

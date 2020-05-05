@@ -3,7 +3,7 @@ title = "Contextsを使う"
 +++
 
 Contextsとは環境変数を保護し、プロジェクト間で共有するためのメカニズムである。
-Organizationの設定ページで設定することができる。
+Organizationの設定ページで設定できる。
 
 使い方は下記の手順を踏む。
 
