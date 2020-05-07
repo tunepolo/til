@@ -1,5 +1,5 @@
 +++
-title = "Node.jsのLTSサポート方針"
+title = "Node.jsのサポート方針"
 +++
 
 メジャーバージョンが奇数は開発用、偶数はLTS（long term support、長期サポート用）である。
