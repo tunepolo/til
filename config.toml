@@ -4,7 +4,6 @@ languageCode = "ja-jp"
 DefaultContentLanguage = "ja"
 title = "Today 'tunepolo' Leaned"
 theme = "hugo-theme-techdoc"
-googleAnalytics = "UA-165624930-1"
 
 hasCJKLanguage = "true"
 enableGitInfo = "true"
@@ -18,6 +17,10 @@ enableGitInfo = "true"
     # OGP setting
     title = "Today 'tunepolo' Leaned"
     images = ["images/love-to-learn.jpg"]
+
+		# Analytics
+		google_analytics_id = "UA-165624930-1"
+		google_site_verification = "iHlDL3Ls94pRZsoFCVlVzdh6ht2VNVa7txVK"
 
     # Theme color
     # See color value reference https://developer.mozilla.org/en-US/docs/Web/CSS/color
