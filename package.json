@@ -6,7 +6,6 @@
   "scripts": {
 		"algolia": "atomic-algolia",
     "textlint": "npx textlint content/**/*.md",
-    "textlint:ci": "npx textlint -f checkstyle content/**/*.md",
     "textlint:fix": "npx textlint --fix content/**/*.md"
   },
   "repository": {
