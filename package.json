@@ -21,7 +21,7 @@
   "homepage": "https://github.com/tunepolo/til#readme",
   "devDependencies": {
     "atomic-algolia": "^0.3.19",
-    "editorconfig-checker": "^3.2.0",
+    "editorconfig-checker": "^3.3.0",
     "textlint": "^11.7.6",
     "textlint-filter-rule-comments": "^1.2.2",
     "textlint-filter-rule-whitelist": "^2.0.0",
