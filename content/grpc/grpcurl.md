@@ -11,7 +11,7 @@ https://github.com/fullstorydev/grpcurl
 
 ## 使い方 (サーバー側でリフレクションが有効化されている場合)
 
-```
+```bash
 # localhost の 50051 でサーバーが稼働している想定
 
 # サービス一覧を表示
