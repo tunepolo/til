@@ -3,7 +3,7 @@
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>2.1形式のファイルを2.0形式に変換する - Today 'tunepolo' Leaned</title>
-<meta name=generator content="Hugo 0.87.0">
+<meta name=generator content="Hugo 0.88.1">
 <link href=https://tunepolo.github.io/til//index.xml rel=alternate type=application/rss+xml>
 <link rel=canonical href=https://tunepolo.github.io/til/circleci/convert_20_to_21/>
 <link rel=stylesheet href=https://tunepolo.github.io/til/css/theme.min.css>
@@ -11,7 +11,6 @@
 <link rel=stylesheet href=https://tunepolo.github.io/til/css/chroma.min.css>
 <script src=https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/jquery.easing@1.4.1/jquery.easing.min.js></script>
-<script src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script>
 <script src=https://tunepolo.github.io/til/js/bundle.js></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-165624930-1"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','UA-165624930-1')</script>
@@ -31,7 +30,8 @@
 <meta itemprop=wordCount content="680"><meta itemprop=image content="https://tunepolo.github.io/til/images/love-to-learn.jpg">
 <meta itemprop=keywords content></head>
 <body><div class=container><header>
-<h1>Today 'tunepolo' Leaned</h1><a href=https://github.com/tunepolo/til class=github><i class="fab fa-github"></i></a>
+<h1>Today 'tunepolo' Leaned</h1>
+<a href=https://github.com/tunepolo/til class=github><i class="fab fa-github"></i></a>
 </header>
 <div class=global-menu>
 <nav>
@@ -45,7 +45,7 @@
 <p>Workflowが使われていたり、Orbsが使われていると実行される設定が分かりにくくなる。
 また2.1形式の設定ファイルはローカル実行もできない。</p>
 <p>下記のやり方でOrbやJobs/Commandを展開し、2.1形式のファイルを2.0形式に変換した結果を入手できる。</p>
-<pre><code>$ circleci config process .circleci/config.yml
+<pre tabindex=0><code>$ circleci config process .circleci/config.yml
 # Orb 'sue445/ruby-orbs@1.4.3' resolved to 'sue445/ruby-orbs@1.4.3'
 # Orb 'yasuhiroki/reviewdog@0.0.3' resolved to 'yasuhiroki/reviewdog@0.0.3'
 version: 2
@@ -241,12 +241,11 @@ workflows:
 #           lint_result_file_path: lint_result.txt
 </code></pre><div class=edit-meta>
 Last updated on 5 May 2020
-<br><a href=https://github.com/tunepolo/til/edit/master/content/circleci/convert_20_to_21.md class=edit-page><i class="fas fa-pen-square"></i>&nbsp;Edit on GitHub</a></div><nav class=pagination><a class="nav nav-prev" href=https://tunepolo.github.io/til/circleci/ title=CircleCI><i class="fas fa-arrow-left" aria-hidden=true></i>&nbsp;Prev - CircleCI</a>
+<br><a href=https://github.com/tunepolo/til/edit/master/content/circleci/convert_20_to_21.md class=edit-page><i class="fas fa-pen-square"></i> Edit on GitHub</a></div><nav class=pagination><a class="nav nav-prev" href=https://tunepolo.github.io/til/circleci/ title=CircleCI><i class="fas fa-arrow-left" aria-hidden=true></i> Prev - CircleCI</a>
 <a class="nav nav-next" href=https://tunepolo.github.io/til/circleci/local_config_validate/ title=CircleCIの設定ファイルをローカルで検証する>Next - CircleCIの設定ファイルをローカルで検証する <i class="fas fa-arrow-right" aria-hidden=true></i></a>
 </nav><footer><p class=powered>Powered by <a href=https://gohugo.io>Hugo</a>. Theme by <a href=https://themes.gohugo.io/hugo-theme-techdoc/>TechDoc</a>. Designed by <a href=https://github.com/thingsym/hugo-theme-techdoc>Thingsym</a>.</p>
 </footer>
-</main>
-<div class=sidebar>
+</main><div class=sidebar>
 <nav class=slide-menu>
 <ul>
 <li><a href=https://tunepolo.github.io/til/>Home</a></li>
