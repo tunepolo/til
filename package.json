@@ -22,7 +22,7 @@
   "devDependencies": {
     "atomic-algolia": "0.3.19",
     "editorconfig-checker": "4.0.2",
-    "textlint": "12.5.0",
+    "textlint": "12.5.1",
     "textlint-filter-rule-comments": "1.2.2",
     "textlint-filter-rule-whitelist": "2.0.0",
     "textlint-rule-preset-ja-technical-writing": "7.0.0"
