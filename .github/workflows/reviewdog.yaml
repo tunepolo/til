@@ -8,21 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7.0.1
-        with:
-          submodules: true
-      - name: textlint-github-pr-check
-        uses: tsuyoshicho/action-textlint@v3.11
-        with:
-          github_token: ${{ secrets.github_token }}
-          reporter: github-pr-check
-          textlint_flags: "content/**/*.md"
-      - name: textlint-github-check
-        uses: tsuyoshicho/action-textlint@v3.11
-        with:
-          github_token: ${{ secrets.github_token }}
-          reporter: github-check
-          textlint_flags: "content/**/*.md"
-      - name: textlint-github-pr-review
+      - name: textlint
         uses: tsuyoshicho/action-textlint@v3.11
         with:
           github_token: ${{ secrets.github_token }}
