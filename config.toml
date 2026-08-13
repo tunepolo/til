@@ -28,27 +28,13 @@ enableGitInfo = "true"
     custom_background_color = "#cc7db1"
 
     # path name excluded from documentation menu
-    menu_exclusion = [
-        "search",
-    ]
-
-    # Algolia site search section
-    # See https://www.algolia.com/doc/
-    algolia_search_enable = true
-    algolia_indexName = "til"
-    algolia_appId = "8SF8KJJWGW"
-    algolia_apiKey = "42e69eff6e94918d7cb871bcbe88cc1e" # Search-Only API Key
+    menu_exclusion = []
 
 [menu]
     [[menu.main]]
         name = "Home"
         url = "/"
         weight = 1
-
-    [[menu.main]]
-        name = "Search"
-        url = "/search"
-        weight = 2
 
 # Markup configure section
 # See https://gohugo.io/getting-started/configuration-markup/
@@ -62,28 +48,4 @@ enableGitInfo = "true"
         ordered = false
 
 [outputs]
-home = ["HTML", "RSS", "Algolia"]
-
-# Algolia Search configure section
-[outputFormats.Algolia]
-    baseName = "algolia"
-    isPlainText = true
-    mediaType = "application/json"
-    notAlternative = true
-
-[params.algolia]
-    vars = [
-        "title",
-        "summary",
-        "content",
-        "date",
-        "publishdate",
-        "description",
-        "permalink",
-        "keywords",
-        "lastmod",
-    ]
-    params = [
-        "tags",
-        "categories",
-    ]
+home = ["HTML", "RSS"]
