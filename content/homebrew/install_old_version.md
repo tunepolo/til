@@ -1,5 +1,7 @@
 +++
 title = "古いバージョンのモジュールをインストールする"
+# ファイル名のtypo (versionn) を直したため、旧URLからリダイレクトする
+aliases = ["/homebrew/install_old_versionn/"]
 +++
 
 PHPやnodeなどの言語を切り替えて使う際、opensslやicu4cなど動的にリンクされるモジュールのバージョンが変わってしまい動かなくなることがある。

@@ -2,6 +2,13 @@
 title = "goenvでインストールする"
 +++
 
+Go 1.21以降はgo.modの`toolchain`ディレクティブと`GOTOOLCHAIN`環境変数により、Go自身が必要なバージョンを取得して切り替える。
+プロジェクトごとにGoのバージョンを合わせたいだけなら、バージョン管理ツールを入れずに済むことが多い。
+
+それでも複数のバージョンを明示的に使い分けたい場合はgoenvを使う。
+
+## インストール
+
 Homebrewでインストールする。
 
 ```shell
@@ -19,15 +26,10 @@ eval "$(goenv init -)"
 
 ```shell
 $ goenv install -l
-Available versions:
-  1.2.2
-  :
-
 $ goenv install 1.11.4
 $ goenv global 1.11.4
 ```
 
-goのバージョンアップにgoenvが(またはHomebrewで入れるgoenvが)追従できておらず、Homebrewの方が新しかった。
-複数goバージョンを使い分ける必要ができたときに検討する。
+なお当時はgoのバージョンアップにgoenvが追従できておらず、Homebrewの方が新しかった。
 
 * [Golangをgoenvを使ってインストールしてみた - Qiita](https://qiita.com/walkers/items/761b2a5e58849176a633)

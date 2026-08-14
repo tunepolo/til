@@ -15,7 +15,7 @@ $ git secrets --install
 $ git secrets --register-aws
 ```
 
-全リポジトリにパターン設定をすることもできる。
+全リポジトリにまとめてパターンを設定できる。
 
 ```
 # for AWS
@@ -32,6 +32,13 @@ init/clone時にgit secretsのインストールを行うにはinit.templatedir�
 $ git secrets --install ~/.git-templates/secrets
 $ git config --global init.templatedir '~/.git-templates/secrets'
 ```
+
+## 現在の選択肢
+
+git-secretsは今も使えるが、コミット前に止める仕組みは他にも増えている。
+
+* GitHubのSecret scanningとPush protection。リポジトリ設定で有効化できる。
+* [gitleaks](https://github.com/gitleaks/gitleaks)。検出ルールが多くCIにも組み込みやすい。
 
 ## 参考
 
