@@ -1,0 +1,1 @@
+(function(){window.lunr&&window.lunr.ja&&window.lunr.ja.tokenizer&&(window.lunr.tokenizer=window.lunr.ja.tokenizer)})()
