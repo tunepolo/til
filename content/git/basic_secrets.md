@@ -15,7 +15,7 @@ $ git secrets --install
 $ git secrets --register-aws
 ```
 
-全リポジトリにパターン設定をすることもできる。
+全リポジトリにまとめてパターンを設定できる。
 
 ```
 # for AWS
