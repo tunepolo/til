@@ -1,19 +1,11 @@
 var relearn_searchindex = [
   {
     "breadcrumb": "TIL : Today I learned \u003e Cygwin",
-    "content": "下記コマンドで作成する。\n$ mkpasswd -l -c \u003e /etc/passwd $ mkgroup -l -c \u003e /etc/group 巨大ドメインに参加している PC での /etc/passwd, /etc/group ファイルのつくりかた",
-    "description": "下記コマンドで作成する。\n$ mkpasswd -l -c \u003e /etc/passwd $ mkgroup -l -c \u003e /etc/group 巨大ドメインに参加している PC での /etc/passwd, /etc/group ファイルのつくりかた",
+    "content": "Cygwin自体は現存するが、同じ用途は現在WSL2で満たせることが多い。\n下記コマンドで作成する。\n$ mkpasswd -l -c \u003e /etc/passwd $ mkgroup -l -c \u003e /etc/group 巨大ドメインに参加している PC での /etc/passwd, /etc/group ファイルのつくりかた",
+    "description": "Cygwin自体は現存するが、同じ用途は現在WSL2で満たせることが多い。\n下記コマンドで作成する。\n$ mkpasswd -l -c \u003e /etc/passwd $ mkgroup -l -c \u003e /etc/group 巨大ドメインに参加している PC での /etc/passwd, /etc/group ファイルのつくりかた",
     "tags": [],
     "title": "/etc/passwdを作成する",
     "uri": "/til/cygwin/create_etc_passwd/index.html"
-  },
-  {
-    "breadcrumb": "TIL : Today I learned \u003e CircleCI",
-    "content": "Workflowが使われていたり、Orbsが使われていると実行される設定が分かりにくくなる。 また2.1形式の設定ファイルはローカル実行もできない。\n下記のやり方でOrbやJobs/Commandを展開し、2.1形式のファイルを2.0形式に変換した結果を入手できる。\n$ circleci config process .circleci/config.yml # Orb 'sue445/ruby-orbs@1.4.3' resolved to 'sue445/ruby-orbs@1.4.3' # Orb 'yasuhiroki/reviewdog@0.0.3' resolved to 'yasuhiroki/reviewdog@0.0.3' version: 2 jobs: rails_minitest: working_directory: ~/workspace docker: - image: circleci/ruby:2.6.1-node-browsers environment: RAILS_ENV: test steps: - checkout - restore_cache: keys: - v1-bundle-{{ .Environment.CIRCLE_JOB }}-{{ checksum \"Gemfile.lock\" }}-{{ .Branch }} - v1-bundle-{{ .Environment.CIRCLE_JOB }}-{{ checksum \"Gemfile.lock\" }} - v1-bundle-{{ .Environment.CIRCLE_JOB }} - v1-bundle - run: command: | set -xe bundle_install_args=\"--jobs=4 --retry=3 --path=vendor/bundle --gemfile=Gemfile\" bundle_install_args=\"$bundle_install_args --clean\" bundle_extra_args=\"\" if [ -n \"$bundle_extra_args\" ]; then bundle_install_args=\"$bundle_install_args $bundle_extra_args\" fi with_gemfile_lock=\"false\" with_gemfile_lock=\"true\" if [ $with_gemfile_lock == \"true\" ]; then bundle install $bundle_install_args else run_bundle_install=\"true\" if [ $run_bundle_install == \"true\" ]; then set +e bundle install $bundle_install_args ret=$? set -e else ret=1 fi # Retry with `bundle update` if `bundle install` is failed if [ $ret -ne 0 ]; then # NOTE: `.bundle/config` is not created after `bundle install` is failed mkdir -p .bundle/ echo '---' \u003e .bundle/config echo 'BUNDLE_PATH: \"vendor/bundle\"' \u003e\u003e .bundle/config bundle update --jobs=4 fi fi name: bundle install - run: command: | set -xe if [ \"Gemfile\" == \"Gemfile\" ]; then gem install restore_bundled_with --no-document restore-bundled-with fi name: restore-bundled-with - save_cache: key: v1-bundle-{{ .Environment.CIRCLE_JOB }}-{{ checksum \"Gemfile.lock\" }}-{{ .Branch }} paths: - vendor/bundle - run: name: Database setup command: | bundle exec rails db:create bundle exec rails db:migrate - run: name: Setup Code Climate test-reporter command: | curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 \u003e ./cc-test-reporter chmod +x ./cc-test-reporter - run: name: Rails Minitest command: | ./cc-test-reporter before-build bundle exec rake test ./cc-test-reporter after-build --coverage-input-type simplecov --exit-code $? reviewdog/reviewdog: docker: - image: cagedata/rubocop steps: - checkout - run: name: Rubocop update command: gem update rubocop - run: command: rubocop --out lint_result.txt || true - store_artifacts: path: lint_result.txt - run: command: | test -f /usr/local/bin/reviewdog \\ || \\ wget https://github.com/haya14busa/reviewdog/releases/download/0.9.11/reviewdog_linux_amd64 -O /usr/local/bin/reviewdog \\ \u0026\u0026 \\ chmod +x /usr/local/bin/reviewdog - run: command: | test ${CI_PULL_REQUEST} || exit 0 cat lint_result.txt | reviewdog -f=rubocop -reporter=github-pr-review workflows: continuous-integration: jobs: - rails_minitest - reviewdog/reviewdog version: 2 # Original config.yml file: # version: 2.1 # # orbs: # ruby-orbs: sue445/ruby-orbs@1.4.3 # reviewdog: yasuhiroki/reviewdog@0.0.3 # # executors: # default: # working_directory: ~/workspace # docker: # - image: circleci/ruby:2.6.1-node-browsers # environment: # RAILS_ENV: test # # commands: # lint: # parameters: # lint_result_file_path: # description: Lint result file path # type: string # steps: # - checkout # - run: # name: Rubocop update # command: gem update rubocop # - run: rubocop --out \u003c\u003cparameters.lint_result_file_path\u003e\u003e || true # - store_artifacts: # path: \u003c\u003cparameters.lint_result_file_path\u003e\u003e # # jobs: # rails_minitest: # executor: # name: default # steps: # - checkout # - ruby-orbs/bundle-install: # bundle_clean: true # bundle_extra_args: '' # bundle_gemfile: Gemfile # bundle_jobs: 4 # bundle_path: vendor/bundle # bundle_retry: 3 # cache_key_prefix: v1-bundle # restore_bundled_with: true # # \\u521D\\u671F\\u8A2D\\u5B9A # - run: # name: Database setup # command: | # bundle exec rails db:create # bundle exec rails db:migrate # # Download test-reporter # - run: # name: Setup Code Climate test-reporter # command: | # curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 \u003e ./cc-test-reporter # chmod +x ./cc-test-reporter # - run: # name: Rails Minitest # command: | # ./cc-test-reporter before-build # bundle exec rake test # ./cc-test-reporter after-build --coverage-input-type simplecov --exit-code $? # # workflows: # continuous-integration: # jobs: # - rails_minitest # - reviewdog/reviewdog: # linter_image: cagedata/rubocop # reviewdog_format_option: '-f=rubocop' # run_linter_steps: # - lint: # lint_result_file_path: lint_result.txt # lint_result_file_path: lint_result.txt",
-    "description": "Workflowが使われていたり、Orbsが使われていると実行される設定が分かりにくくなる。 また2.1形式の設定ファイルはローカル実行もできない。",
-    "tags": [],
-    "title": "2.1形式のファイルを2.0形式に変換する",
-    "uri": "/til/circleci/convert_20_to_21/index.html"
   },
   {
     "breadcrumb": "TIL : Today I learned",
@@ -105,8 +97,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "TIL : Today I learned \u003e Mac OS",
-    "content": "「システム環境設定」→「キーボード」→「修飾キー」と辿り、キーを入れ替えればよい。\nUS仕様のキーボードのMacでControlキーとCaps Lockキーを入れ替える方法 / Inforati",
-    "description": "「システム環境設定」→「キーボード」→「修飾キー」と辿り、キーを入れ替えればよい。\nUS仕様のキーボードのMacでControlキーとCaps Lockキーを入れ替える方法 / Inforati",
+    "content": "「システム設定」→「キーボード」→「キーボードショートカット」→「修飾キー」と辿り、キーを入れ替えればよい。\nmacOS Monterey以前は「システム環境設定」→「キーボード」→「修飾キー」だった。 macOS Venturaで「システム設定」に名称が変わり、経路も深くなっている。\nUS仕様のキーボードのMacでControlキーとCaps Lockキーを入れ替える方法 / Inforati",
+    "description": "「システム設定」→「キーボード」→「キーボードショートカット」→「修飾キー」と辿り、キーを入れ替えればよい。\nmacOS Monterey以前は「システム環境設定」→「キーボード」→「修飾キー」だった。 macOS Venturaで「システム設定」に名称が変わり、経路も深くなっている。",
     "tags": [],
     "title": "ControlキーとCaps Lockキーを入れ替える",
     "uri": "/til/mac/swap_ctrl_caps/index.html"
@@ -129,8 +121,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "TIL : Today I learned \u003e Docker",
-    "content": "ローカル環境のイメージを表示 $ docker images REPOSITORY TAG IMAGE ID CREATED SIZE circleci/picard latest 95ab6c488705 5 days ago 102MB circleci/ruby 2.5.3-node-browsers e3e595663b2c 10 days ago 2.02GB circleci/ruby 2.6.1-node-browsers 3ea7b04df6dc 10 days ago 2.02GB circleci/ruby 2.6.1 cf96d5f9e8cf 10 days ago 1.21GB circleci/golang 1.11.2 3e93e4cd615c 2 months ago 1.13GB ローカル環境のDockerコンテナの一覧を表示 $ docker ps -a CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES Dockerイメージの削除 $ docker rmi 95ab6c488705 Untagged: circleci/picard:latest Untagged: circleci/picard@sha256:a6decb2448f4371c64efde9dad90cc4efe0a72216ba7dc288fc89341d0b0c9d2 Deleted: sha256:95ab6c48870525a4596da7e4942e97d7b6cad3d307982fb4e92d244549b576e7 Deleted: sha256:a285c3f03146a03c665e6fe750737ac26abb304780f1d880b997bada0143513c Deleted: sha256:4b13dd28c2bf8d5bd54d98681610dd60749434b544e86c3945f3de1469924e4f Deleted: sha256:1ac7df22a46bb91060529dc6e0f9e5df63f37c698537cb966371dd48e3bfcf57 Deleted: sha256:71f5e9d93fe58ac53183778ad7fb30cd1ccf19d0aabbca16b5a1d920b1938d39 Deleted: sha256:c374bc45818d75cc05e893b7faa35af3517caae9ef789e949bf847c7513a4e56 Deleted: sha256:767f936afb51c8a3ad9a96592a4be092048bb70f2ca410028a0b3f64b826acbb 参考文献 Docker入門（第二回）～Dockerセットアップ、コンテナ起動～",
-    "description": "ローカル環境のイメージを表示 $ docker images REPOSITORY TAG IMAGE ID CREATED SIZE circleci/picard latest 95ab6c488705 5 days ago 102MB circleci/ruby 2.5.3-node-browsers e3e595663b2c 10 days ago 2.02GB circleci/ruby 2.6.1-node-browsers 3ea7b04df6dc 10 days ago 2.02GB circleci/ruby 2.6.1 cf96d5f9e8cf 10 days ago 1.21GB circleci/golang 1.11.2 3e93e4cd615c 2 months ago 1.13GB ローカル環境のDockerコンテナの一覧を表示 $ docker ps -a CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES Dockerイメージの削除 $ docker rmi 95ab6c488705 Untagged: circleci/picard:latest Untagged: circleci/picard@sha256:a6decb2448f4371c64efde9dad90cc4efe0a72216ba7dc288fc89341d0b0c9d2 Deleted: sha256:95ab6c48870525a4596da7e4942e97d7b6cad3d307982fb4e92d244549b576e7 Deleted: sha256:a285c3f03146a03c665e6fe750737ac26abb304780f1d880b997bada0143513c Deleted: sha256:4b13dd28c2bf8d5bd54d98681610dd60749434b544e86c3945f3de1469924e4f Deleted: sha256:1ac7df22a46bb91060529dc6e0f9e5df63f37c698537cb966371dd48e3bfcf57 Deleted: sha256:71f5e9d93fe58ac53183778ad7fb30cd1ccf19d0aabbca16b5a1d920b1938d39 Deleted: sha256:c374bc45818d75cc05e893b7faa35af3517caae9ef789e949bf847c7513a4e56 Deleted: sha256:767f936afb51c8a3ad9a96592a4be092048bb70f2ca410028a0b3f64b826acbb 参考文献 Docker入門（第二回）～Dockerセットアップ、コンテナ起動～",
+    "content": "ローカル環境のイメージを表示 $ docker images REPOSITORY TAG IMAGE ID CREATED SIZE ruby 3.3 cf96d5f9e8cf 2 weeks ago 1.21GB golang 1.22 3e93e4cd615c 2 months ago 1.13GB ローカル環境のDockerコンテナの一覧を表示 $ docker ps -a CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES Dockerイメージの削除 $ docker rmi cf96d5f9e8cf イメージIDのかわりにリポジトリ名:タグでも指定できる。\n不要なリソースをまとめて削除 $ docker system prune 停止したコンテナ、使われていないネットワーク、どこからも参照されていないイメージが削除される。\nCompose Compose V2以降はDocker CLIのサブコマンドになっている。 ハイフンのあるdocker-composeではなくdocker composeを使う。\n$ docker compose up -d 参考文献 Docker入門（第二回）～Dockerセットアップ、コンテナ起動～",
+    "description": "ローカル環境のイメージを表示 $ docker images REPOSITORY TAG IMAGE ID CREATED SIZE ruby 3.3 cf96d5f9e8cf 2 weeks ago 1.21GB golang 1.22 3e93e4cd615c 2 months ago 1.13GB ローカル環境のDockerコンテナの一覧を表示 $ docker ps -a CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES Dockerイメージの削除 $ docker rmi cf96d5f9e8cf イメージIDのかわりにリポジトリ名:タグでも指定できる。",
     "tags": [],
     "title": "Dockerの基本操作",
     "uri": "/til/docker/basic_command/index.html"
@@ -153,16 +145,16 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "TIL : Today I learned \u003e Git",
-    "content": "Homebrewでインストールする。\n$ brew install git-secrets git-secretsを利用するリポジトリでhookのインストールを行い、パターンを登録する。\n$ git secrets --install $ git secrets --register-aws 全リポジトリにパターン設定をすることもできる。\n# for AWS $ git secrets --register-aws --global # for GCP @see https://cloudplatform-jp.googleblog.com/2017/08/help-keep-your-Google-Cloud-service-account-keys-safe.html git secrets --add 'private_key' --global git secrets --add 'private_key_id' --global init/clone時にgit secretsのインストールを行うにはinit.templatedirの設定をする。\n$ git secrets --install ~/.git-templates/secrets $ git config --global init.templatedir '~/.git-templates/secrets' 参考 git-secretsの設定を手元の全Repositoryに反映する。｜teitei.tk｜note",
-    "description": "Homebrewでインストールする。\n$ brew install git-secrets git-secretsを利用するリポジトリでhookのインストールを行い、パターンを登録する。\n$ git secrets --install $ git secrets --register-aws 全リポジトリにパターン設定をすることもできる。",
+    "content": "Homebrewでインストールする。\n$ brew install git-secrets git-secretsを利用するリポジトリでhookのインストールを行い、パターンを登録する。\n$ git secrets --install $ git secrets --register-aws 全リポジトリにまとめてパターンを設定できる。\n# for AWS $ git secrets --register-aws --global # for GCP @see https://cloudplatform-jp.googleblog.com/2017/08/help-keep-your-Google-Cloud-service-account-keys-safe.html git secrets --add 'private_key' --global git secrets --add 'private_key_id' --global init/clone時にgit secretsのインストールを行うにはinit.templatedirの設定をする。\n$ git secrets --install ~/.git-templates/secrets $ git config --global init.templatedir '~/.git-templates/secrets' 現在の選択肢 git-secretsは今も使えるが、コミット前に止める仕組みは他にも増えている。\nGitHubのSecret scanningとPush protection。リポジトリ設定で有効化できる。 gitleaks。検出ルールが多くCIにも組み込みやすい。 参考 git-secretsの設定を手元の全Repositoryに反映する。｜teitei.tk｜note",
+    "description": "Homebrewでインストールする。\n$ brew install git-secrets git-secretsを利用するリポジトリでhookのインストールを行い、パターンを登録する。\n$ git secrets --install $ git secrets --register-aws 全リポジトリにまとめてパターンを設定できる。",
     "tags": [],
     "title": "git secretsの基本操作",
     "uri": "/til/git/basic_secrets/index.html"
   },
   {
     "breadcrumb": "TIL : Today I learned \u003e Git",
-    "content": "$ git submodule foreach git pull origin master",
-    "description": "$ git submodule foreach git pull origin master",
+    "content": "$ git submodule update --remote .gitmodulesのbranch指定に従って追従する。指定がない場合は既定ブランチが使われる。\n各サブモジュールで直接pullする方法もある。ただしブランチ名を決め打ちすることになる。\n$ git submodule foreach git pull origin master",
+    "description": "$ git submodule update --remote .gitmodulesのbranch指定に従って追従する。指定がない場合は既定ブランチが使われる。\n各サブモジュールで直接pullする方法もある。ただしブランチ名を決め打ちすることになる。",
     "tags": [],
     "title": "git submoduleで管理しているリポジトリをリモートの最新に追従させる",
     "uri": "/til/git/submodule_pull_origin_master/index.html"
@@ -185,8 +177,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "TIL : Today I learned \u003e GitBook",
-    "content": "Gitbookとは Markdownで書いたファイルをHTML/EPUB/PDFに変換して公開できるツール。 ホスティングサービスと、CLIツールが存在する。\nホスティングサービス CLIツール Gitbookの作り方 詳細な説明は下記にある。\nGitBook Documentation CLIツールを動かすにはnode.jsが必要。 node.jsをインストール後、npmでgitbookをインストールする。\n$ npm install -g gitbook-cli gitbookを作るには最低限2つのファイルが必要。\nREADME.md SUMMARY.md 目次 ここでリンクを貼ったMarkdownファイルのみが処理される htmlへの変換は下記コマンドで行う。\n$ gitbook build PDFに変換する Calibreを事前にインストールしておく。\nPDFへの変換は下記コマンドで行う。\n$ gitbook pdf",
-    "description": "Gitbookとは Markdownで書いたファイルをHTML/EPUB/PDFに変換して公開できるツール。 ホスティングサービスと、CLIツールが存在する。",
+    "content": "Markdownで書いたファイルをHTML/EPUB/PDFに変換して公開するツールだった。\nnpmのgitbookパッケージはdeprecatedとなり、最終リリースは2018年10月である。 CLIのgitbook-cliも2017年7月から更新が止まっている。 現在のGitBookはホスティング製品であり、GitbookIO/gitbookリポジトリはドキュメントサイトのフロントエンドで別物である。\n当時の使い方 CLIツールを動かすにはNode.jsが必要だった。\n$ npm install -g gitbook-cli 最低限2つのファイルが要る。SUMMARY.mdでリンクしたMarkdownファイルだけが処理された。\nREADME.md SUMMARY.md（目次） HTMLへの変換はgitbook buildで行う。 PDFへの変換はgitbook pdfだが、事前にCalibreのインストールが必要だった。\n現在の選択肢 Markdownからドキュメントサイトを作る用途では下記がある。\nVitePress Docusaurus mdBook Hugo（このサイト自体がHugoで作られている）",
+    "description": "Markdownで書いたファイルをHTML/EPUB/PDFに変換して公開するツールだった。\nnpmのgitbookパッケージはdeprecatedとなり、最終リリースは2018年10月である。 CLIのgitbook-cliも2017年7月から更新が止まっている。 現在のGitBookはホスティング製品であり、GitbookIO/gitbookリポジトリはドキュメントサイトのフロントエンドで別物である。",
     "tags": [],
     "title": "Gitbookの基本操作",
     "uri": "/til/gitbook/basic_command/index.html"
@@ -201,8 +193,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "TIL : Today I learned \u003e Git",
-    "content": "Homebrewでインストールする。\n$ brew install goenv パスの設定と、初期化処理をシェルの設定ファイルへ。\nexport PATH=\"$HOME/.goenv/bin:$PATH\" eval \"$(goenv init -)\" インストール可能なバージョン一覧を確認し、インストールして、使うバージョンを指定する。\n$ goenv install -l Available versions: 1.2.2 : $ goenv install 1.11.4 $ goenv global 1.11.4 goのバージョンアップにgoenvが(またはHomebrewで入れるgoenvが)追従できておらず、Homebrewの方が新しかった。 複数goバージョンを使い分ける必要ができたときに検討する。\nGolangをgoenvを使ってインストールしてみた - Qiita",
-    "description": "Homebrewでインストールする。\n$ brew install goenv パスの設定と、初期化処理をシェルの設定ファイルへ。\nexport PATH=\"$HOME/.goenv/bin:$PATH\" eval \"$(goenv init -)\" インストール可能なバージョン一覧を確認し、インストールして、使うバージョンを指定する。",
+    "content": "Go 1.21以降はgo.modのtoolchainディレクティブとGOTOOLCHAIN環境変数により、Go自身が必要なバージョンを取得して切り替える。 プロジェクトごとにGoのバージョンを合わせたいだけなら、バージョン管理ツールを入れずに済むことが多い。\nそれでも複数のバージョンを明示的に使い分けたい場合はgoenvを使う。\nインストール Homebrewでインストールする。\n$ brew install goenv パスの設定と、初期化処理をシェルの設定ファイルへ。\nexport PATH=\"$HOME/.goenv/bin:$PATH\" eval \"$(goenv init -)\" インストール可能なバージョン一覧を確認し、インストールして、使うバージョンを指定する。\n$ goenv install -l $ goenv install 1.11.4 $ goenv global 1.11.4 なお当時はgoのバージョンアップにgoenvが追従できておらず、Homebrewの方が新しかった。\nGolangをgoenvを使ってインストールしてみた - Qiita",
+    "description": "Go 1.21以降はgo.modのtoolchainディレクティブとGOTOOLCHAIN環境変数により、Go自身が必要なバージョンを取得して切り替える。 プロジェクトごとにGoのバージョンを合わせたいだけなら、バージョン管理ツールを入れずに済むことが多い。",
     "tags": [],
     "title": "goenvでインストールする",
     "uri": "/til/git/goenv/index.html"
@@ -241,8 +233,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "TIL : Today I learned \u003e Heroku",
-    "content": "インストール \u0026 セットアップ The Heroku CLIを参考にインストールする。\nMacでHomebrewを使う場合は下記でインストールできる。\n$ brew install heroku/brew/heroku インストールできたらログインし、SSH鍵を登録する。\n$ heroku login $ heroku keys:add 新しいアプリケーションを作成する。 $ heroku create Herokuにデプロイする $ git push heroku master Herokuにデプロイされたページを開く $ heroku open",
-    "description": "インストール \u0026 セットアップ The Heroku CLIを参考にインストールする。\nMacでHomebrewを使う場合は下記でインストールできる。",
+    "content": "Herokuの無料プランは2022年11月に終了した。現在は有料プランの契約が必要である。\nインストール \u0026 セットアップ The Heroku CLIを参考にインストールする。\nMacでHomebrewを使う場合は下記でインストールできる。\n$ brew install heroku/brew/heroku インストールできたらログインし、SSH鍵を登録する。\n$ heroku login $ heroku keys:add 新しいアプリケーションを作成する $ heroku create Herokuにデプロイする デプロイ先のブランチ名はリポジトリの既定ブランチに合わせる。\n$ git push heroku main Herokuにデプロイされたページを開く $ heroku open",
+    "description": "Herokuの無料プランは2022年11月に終了した。現在は有料プランの契約が必要である。\nインストール \u0026 セットアップ The Heroku CLIを参考にインストールする。",
     "tags": [],
     "title": "Herokuコマンドの基本操作",
     "uri": "/til/heroku/basic_command/index.html"
@@ -257,8 +249,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "TIL : Today I learned \u003e Homebrew",
-    "content": "Homebrew自体のアップデート $ brew update Homebrew自体 + インストールしたソフトウェアのアップデート $ brew upgrade Homebrew Caskでインストールしたソフトウェアのアップデート $ brew cask upgrade mas-cliでインストールしたソフトウェアのアップデート $ mas upgrade",
-    "description": "Homebrew自体のアップデート $ brew update Homebrew自体 + インストールしたソフトウェアのアップデート $ brew upgrade Homebrew Caskでインストールしたソフトウェアのアップデート $ brew cask upgrade mas-cliでインストールしたソフトウェアのアップデート $ mas upgrade",
+    "content": "Homebrew自体のアップデート $ brew update Homebrew自体 + インストールしたソフトウェアのアップデート $ brew upgrade Homebrew Caskでインストールしたソフトウェアのアップデート Homebrew 2.6 で brew cask サブコマンドは廃止された。--cask オプションを使う。\n$ brew upgrade --cask mas-cliでインストールしたソフトウェアのアップデート $ mas upgrade",
+    "description": "Homebrew自体のアップデート $ brew update Homebrew自体 + インストールしたソフトウェアのアップデート $ brew upgrade Homebrew Caskでインストールしたソフトウェアのアップデート Homebrew 2.6 で brew cask サブコマンドは廃止された。--cask オプションを使う。",
     "tags": [],
     "title": "Homebrew周りのアップデートコマンド",
     "uri": "/til/homebrew/update_command/index.html"
@@ -321,7 +313,7 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "TIL : Today I learned \u003e Node.js",
-    "content": "メジャーバージョンが奇数は開発用、偶数はLTS（long term support、長期サポート用）である。\nメジャーバージョンがリリースされると、6か月間の\"Current release status\"にはいる。 これはnpmライブラリ作者が対応するための期間である。\nCurrent release status終了後の対応は以下の通り。\n奇数バージョン : サポート終了 偶数バージョン : Active LTS statusに入り、30か月のサポートが開始される。 サービスにはActive LTSかMaintenance LTS releasesを使用するべきである。\nRelease | Node.js",
+    "content": "メジャーバージョンが奇数は開発用、偶数はLTS（long term support、長期サポート用）である。\nメジャーバージョンがリリースされると、6か月間の\"Current release status\"にはいる。 これはnpmライブラリ作者が対応するための期間である。\nCurrent release status終了後の対応は以下の通り。\n奇数バージョン : サポート終了 偶数バージョン : Active LTS statusに入る 偶数バージョンはActive LTSを経てMaintenance LTSに移る。 リリースからおよそ30か月でサポートが終了する。30か月はActive LTS単体の期間ではない。\nサービスにはActive LTSかMaintenance LTS releasesを使用するべきである。\nRelease | Node.js",
     "description": "メジャーバージョンが奇数は開発用、偶数はLTS（long term support、長期サポート用）である。\nメジャーバージョンがリリースされると、6か月間の\"Current release status\"にはいる。 これはnpmライブラリ作者が対応するための期間である。",
     "tags": [],
     "title": "Node.jsのサポート方針",
@@ -337,8 +329,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "TIL : Today I learned \u003e npm",
-    "content": "# npm update -g npm",
-    "description": "# npm update -g npm",
+    "content": "$ npm install -g npm@latest npm update -g npmでも上がるが、バージョンを明示するほうが確実である。",
+    "description": "$ npm install -g npm@latest npm update -g npmでも上がるが、バージョンを明示するほうが確実である。",
     "tags": [],
     "title": "npmのバージョンを上げる",
     "uri": "/til/npm/npm_global_verup/index.html"
@@ -369,7 +361,7 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "TIL : Today I learned \u003e PHP",
-    "content": "文字列型とキャスト echoで出力する場合、文字列以外の変数・定数は文字列にキャストされて出力される。 下記の例は15.0ではなく、15と表示される。\necho 15.0; // 15と出力される printf('%.1f', 15.0); // 15.0と出力される falseと判断される論理型 PHPは下記をfalseと判断する。\nfalse (論理型) 0 (整数型) 0.0 (浮動小数点型) 空の文字列 (\"\")、文字列のゼロ (“0”) 要素の数が0の配列 null 空のタグから作成されたSimpleXMLオブジェクト 「数値らしき文字列」を整数型・浮動小数点型にキャストする。 下記のスクリプトはequalを出力する。 0.0が浮動小数点型に、0が整数型にキャストされる。 両者が比較される際に浮動小数点型で統一され、if文の評価がtrueとなる。\nif ('0.0' == '0') { echo 'equal'; } 数字を文字列と連結する際にスペースがないとパースエラーとなる。 $str1 = \"He's \" . 10 . \" years old.\"; // \"He's 10 years old.\" $str2 = \"She's \" . 11. \" years old.\"; // \"11.\"が浮動小数点型と判断され、パースエラーが発生する。 三項演算子が入れ子にできる。 三項演算子は左結合であるため、下記の式は(true ? 1 : false) ? 2 : 0と評価され、2が出力される。\necho true ? 1 : false ? 2 : 0; // 2が出力される。 PHPの配列はすべて連想配列である。 他言語である配列とハッシュ（連想配列）の区別がない。 この特性から、PHPの連想配列は順序が保証されている。\n別ファイルに記述されたPHPファイルを読み込む requireとincludeがある。前者はファイルがなければFatal Errorを返す。後者はWarningとなる。 どちらも読んだ回数だけ実行されるため、ライブラリ読み込みのように1度きり読み込む際はrequire_onceかinclude_onceを使う。\n宣言していないプロパティにアクセスできる。 プロパティ名のtypoをしたらハマりそう。\nclass Hoge { // ... } $foo = new Hoge(); $foo-\u003ebar = \"hogehoge\"; // barプロパティが作成される",
+    "content": "文字列型とキャスト echoで出力する場合、文字列以外の変数・定数は文字列にキャストされて出力される。 下記の例は15.0ではなく、15と表示される。\necho 15.0; // 15と出力される printf('%.1f', 15.0); // 15.0と出力される falseと判断される論理型 PHPは下記をfalseと判断する。\nfalse (論理型) 0 (整数型) 0.0 (浮動小数点型) 空の文字列 (\"\")、文字列のゼロ (“0”) 要素の数が0の配列 null 空のタグから作成されたSimpleXMLオブジェクト 「数値らしき文字列」を整数型・浮動小数点型にキャストする。 下記のスクリプトはequalを出力する。 0.0が浮動小数点型に、0が整数型にキャストされる。 両者が比較される際に浮動小数点型で統一され、if文の評価がtrueとなる。\nif ('0.0' == '0') { echo 'equal'; } 数字を文字列と連結する際にスペースがないとパースエラーとなる。 $str1 = \"He's \" . 10 . \" years old.\"; // \"He's 10 years old.\" $str2 = \"She's \" . 11. \" years old.\"; // \"11.\"が浮動小数点型と判断され、パースエラーが発生する。 三項演算子が入れ子にできる。 三項演算子は左結合であるため、下記の式は(true ? 1 : false) ? 2 : 0と評価され、2が出力される。\necho true ? 1 : false ? 2 : 0; // 2が出力される。 PHPの配列はすべて連想配列である。 他言語である配列とハッシュ（連想配列）の区別がない。 この特性から、PHPの連想配列は順序が保証されている。\n別ファイルに記述されたPHPファイルを読み込む requireとincludeがある。前者はファイルがなければFatal Errorを返す。後者はWarningとなる。 どちらも読んだ回数だけ実行されるため、ライブラリ読み込みのように1度きり読み込む際はrequire_onceかinclude_onceを使う。\n宣言していないプロパティにアクセスできる。 プロパティ名のtypoをしたらハマりそう。\nなおこの動作はPHP 8.2で非推奨となった。 宣言していないプロパティへの代入は警告が出る。\nclass Hoge { // ... } $foo = new Hoge(); $foo-\u003ebar = \"hogehoge\"; // barプロパティが作成される",
     "description": "文字列型とキャスト echoで出力する場合、文字列以外の変数・定数は文字列にキャストされて出力される。 下記の例は15.0ではなく、15と表示される。",
     "tags": [],
     "title": "PHPのヘンテコ仕様",
@@ -393,8 +385,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "TIL : Today I learned \u003e Ruby",
-    "content": "rbenvを使ったrubyのインストール $ rbenv install --list $ rbenv install 2.6.1 $ rbenv global 2.6.1 $ rbenv version rbenvを更新する $ brew update $ brew update rbenv ruby-build rbenvで入れたgemをまとめて更新する rbenv-eachを使う。\n$ git clone https://github.com/rbenv/rbenv-each.git \"$(rbenv root)\"/plugins/rbenv-each $ rbenv each gem update --system",
-    "description": "rbenvを使ったrubyのインストール $ rbenv install --list $ rbenv install 2.6.1 $ rbenv global 2.6.1 $ rbenv version rbenvを更新する $ brew update $ brew update rbenv ruby-build rbenvで入れたgemをまとめて更新する rbenv-eachを使う。",
+    "content": "rbenvを使ったrubyのインストール $ rbenv install --list $ rbenv install 2.6.1 $ rbenv global 2.6.1 $ rbenv version rbenvを更新する $ brew update $ brew upgrade rbenv ruby-build rbenvで入れたgemをまとめて更新する rbenv-eachを使う。\n$ git clone https://github.com/rbenv/rbenv-each.git \"$(rbenv root)\"/plugins/rbenv-each $ rbenv each gem update --system",
+    "description": "rbenvを使ったrubyのインストール $ rbenv install --list $ rbenv install 2.6.1 $ rbenv global 2.6.1 $ rbenv version rbenvを更新する $ brew update $ brew upgrade rbenv ruby-build rbenvで入れたgemをまとめて更新する rbenv-eachを使う。",
     "tags": [],
     "title": "rbenvの基本操作",
     "uri": "/til/ruby/rbenv_basic/index.html"
@@ -441,8 +433,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "TIL : Today I learned \u003e Security",
-    "content": "概要 データベースに対する命令文（SQL）を改竄して意図しない操作を行う。\n対応方法 入力をエスケープする。 PreparedStatementを利用する。 参考 SQLインジェクション - Wikipedia",
-    "description": "概要 データベースに対する命令文（SQL）を改竄して意図しない操作を行う。\n対応方法 入力をエスケープする。 PreparedStatementを利用する。 参考 SQLインジェクション - Wikipedia",
+    "content": "概要 データベースに対する命令文（SQL）を改竄し、意図しない操作をさせる。\n対応方法 入力をエスケープする。 PreparedStatementを利用する。 参考 SQLインジェクション - Wikipedia",
+    "description": "概要 データベースに対する命令文（SQL）を改竄し、意図しない操作をさせる。\n対応方法 入力をエスケープする。 PreparedStatementを利用する。 参考 SQLインジェクション - Wikipedia",
     "tags": [],
     "title": "SQLインジェクション",
     "uri": "/til/security/sql_injection/index.html"
@@ -497,7 +489,7 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "TIL : Today I learned \u003e Management",
-    "content": "MIT Sloan School of Managementのダグラス・マクレガーの著書「企業の人間的側面」で提唱されたモチベーションに関するマネジメントの理論である。\nX理論 人間は経済的動機のみによって労働し、命令・指示されたことしか実行しない\n次のような仮定に基づいている。\n人は本質的に仕事が嫌いで、それを避けようとする。 最大限の成果を引き出すためには、強制・制御・命令・脅迫が必要である。 人は野心を抱くこともなく、責任も取りたがらない。命令されたい。 人事の多くの仕組みはX理論の仮定に根ざしている。パフォーマンスレビュー・個別の目標設定・ボーナスシステムなど。\nY理論 人間にとって労働は本来望ましいものであり、自己の能力を発揮し、自己実現を目指すことを望んでいる\n次のような仮定に基づいている。\n人は遊びや休息を取るのと同じように、自然に努力して働く。 コミットした目標のために、自己管理・自己統制を行う。コミットメントは成果に関連するチャレンジ・学習・目的意識など内在的な報酬から生まれる。 適切な環境が与えられれば人は責任を回避するのではなく、むしろ求める。想像力・独創力・創造性はすべての人が持っているスキルである。",
+    "content": "MIT Sloan School of Managementのダグラス・マクレガーの著書「企業の人間的側面」で提唱されたモチベーションに関するマネジメントの理論である。\nX理論 人間は経済的動機のみによって労働し、命令・指示されたことしか実行しない\n次のような仮定に基づいている。\n人は本質的に仕事が嫌いで、それを避けようとする。 最大限の成果を引き出すためには、強制・制御・命令・脅迫が必要である。 人は野心を抱くこともなく、責任も取りたがらない。命令されたい。 人事の多くの仕組みはX理論の仮定に根ざしている。パフォーマンスレビュー・個別の目標設定・ボーナスシステムなど。\nY理論 人間にとって労働は本来望ましいものであり、自己の能力を発揮し、自己実現を目指すことを望んでいる\n次のような仮定に基づいている。\n人は遊びや休息を取るのと同じように、自然に努力して働く。 コミットした目標のために、自己管理・自己統制する。コミットメントは成果に関連するチャレンジ・学習・目的意識など内在的な報酬から生まれる。 適切な環境が与えられれば人は責任を回避するのではなく、むしろ求める。想像力・独創力・創造性はすべての人が持っているスキルである。",
     "description": "MIT Sloan School of Managementのダグラス・マクレガーの著書「企業の人間的側面」で提唱されたモチベーションに関するマネジメントの理論である。\nX理論 人間は経済的動機のみによって労働し、命令・指示されたことしか実行しない",
     "tags": [],
     "title": "X理論とY理論",
@@ -513,8 +505,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "TIL : Today I learned \u003e CentOS",
-    "content": "/etc/redhat-releaseを確認する。\n$ cat /etc/redhat-release CentOS release 6.4 (Final)",
-    "description": "/etc/redhat-releaseを確認する。\n$ cat /etc/redhat-release CentOS release 6.4 (Final)",
+    "content": "/etc/os-releaseを確認する。systemdを採用しているディストリビューションで共通して使える。\n$ cat /etc/os-release NAME=\"Rocky Linux\" VERSION=\"9.3 (Blue Onyx)\" ID=\"rocky\" VERSION_ID=\"9.3\" RHEL系には/etc/redhat-releaseもある。\n$ cat /etc/redhat-release CentOS release 6.4 (Final) なおCentOS Linuxはすでにサポートが終了している。 CentOS 8は2021年12月、CentOS 7は2024年6月に終了した。 後継にあたるのはCentOS Stream、Rocky Linux、AlmaLinuxなどである。",
+    "description": "/etc/os-releaseを確認する。systemdを採用しているディストリビューションで共通して使える。\n$ cat /etc/os-release NAME=\"Rocky Linux\" VERSION=\"9.3 (Blue Onyx)\" ID=\"rocky\" VERSION_ID=\"9.3\" RHEL系には/etc/redhat-releaseもある。",
     "tags": [],
     "title": "バージョンの確認方法",
     "uri": "/til/centos/version_check/index.html"
@@ -529,8 +521,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "TIL : Today I learned \u003e Homebrew",
-    "content": "$ brew bundle dump Brewfileにインストールしたソフトウェアが書き込まれる。\n$ brew bundle Brewfile でBrewfileに書き込まれたソフトウェアを一括インストールできる。",
-    "description": "$ brew bundle dump Brewfileにインストールしたソフトウェアが書き込まれる。\n$ brew bundle Brewfile でBrewfileに書き込まれたソフトウェアを一括インストールできる。",
+    "content": "$ brew bundle dump Brewfileにインストールしたソフトウェアが書き込まれる。\n$ brew bundle --file=Brewfile でBrewfileに書き込まれたソフトウェアを一括インストールできる。",
+    "description": "$ brew bundle dump Brewfileにインストールしたソフトウェアが書き込まれる。\n$ brew bundle --file=Brewfile でBrewfileに書き込まれたソフトウェアを一括インストールできる。",
     "tags": [],
     "title": "インストールしたソフトウェアをファイルに書き出す",
     "uri": "/til/homebrew/brew_bundle_dump/index.html"
@@ -569,8 +561,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "TIL : Today I learned \u003e Security",
-    "content": "概要 正規の権限を持つユーザに対して意図しない操作を行わせる。 「SNSに勝手に投稿する」「コンテンツを削除・改変する」「パスワードを勝手に変更する」など。\n対応方法 ワンタイムトークンを発行しチェックする。 予測困難な不規則な文字列（トークン）をセットし、処理の開始前にセッション変数とトークンの検証を行う。\n参考 クロスサイトリクエストフォージェリ - Wikipedia",
-    "description": "概要 正規の権限を持つユーザに対して意図しない操作を行わせる。 「SNSに勝手に投稿する」「コンテンツを削除・改変する」「パスワードを勝手に変更する」など。",
+    "content": "概要 正規の権限を持つユーザに対して意図しない操作をさせる。 「SNSに勝手に投稿する」「コンテンツを削除・改変する」「パスワードを勝手に変更する」など。\n対応方法 ワンタイムトークンを発行しチェックする。 予測困難な不規則な文字列（トークン）をセットし、処理の開始前にセッション変数とトークンを検証する。\nあわせてCookieにSameSite属性を設定する。 主要ブラウザは2020年以降SameSite=Laxを既定としており、これだけでも外部サイトからのクロスサイトリクエストの多くが送信されなくなる。 ただし既定に頼らず明示的に指定するほうが確実である。\n参考 クロスサイトリクエストフォージェリ - Wikipedia",
+    "description": "概要 正規の権限を持つユーザに対して意図しない操作をさせる。 「SNSに勝手に投稿する」「コンテンツを削除・改変する」「パスワードを勝手に変更する」など。",
     "tags": [],
     "title": "クロスサイトリクエストフォージェリ（CSRF）",
     "uri": "/til/security/csrf/index.html"
@@ -593,7 +585,7 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "TIL : Today I learned \u003e Security",
-    "content": "概要 サイトにスクリプトを含むリクエストを送信し、サイトを訪れた第三者に悪意のあるコードを実行させる脆弱性の総称。\n攻撃対象のサイトだけでなく、別サイトへのリダイレクトなど複数サイトを横断させてスクリプトを実行させることもできることからクロスサイトスクリプティング（XSS）とも呼ばれる。\n名前 説明 持続型 攻撃者がスクリプトを含むリクエストを送信してサーバーに保存させる。保存されたスクリプトを組み込んだページを訪れた第三者にスクリプトを実行させる。 反射型 第三者にスクリプトを含むリクエストを送信させる。送信したスクリプトがページ内に差し込まれる脆弱性を利用して、リクエストを送信したページ上でスクリプトを実行させる送信したスクリプトはサーバーに保存されない。 DOMベース 第三者にスクリプトを含むリクエストを送信させ、クライアントサイドスクリプトの脆弱性を利用する。 対応方法 出力時にエスケープを行って攻撃コードを無効化する。 厳密に値を入力検査する インラインスクリプトにユーザーの入力を展開しない。 文字コードを指定する レスポンスヘッダーに適切な文字コードを指定しないと、文字化けを利用してスクリプトを混入させる隙を与えるため。 参考 スクリプトインジェクション入門 - Qiita",
+    "content": "概要 サイトにスクリプトを含むリクエストを送信し、サイトを訪れた第三者に悪意のあるコードを実行させる脆弱性の総称。\n攻撃対象のサイトだけでなく、別サイトへのリダイレクトなど複数サイトを横断させてスクリプトを実行させることもできることからクロスサイトスクリプティング（XSS）とも呼ばれる。\n名前 説明 持続型 攻撃者がスクリプトを含むリクエストを送信してサーバーに保存させる。保存されたスクリプトを組み込んだページを訪れた第三者にスクリプトを実行させる。 反射型 第三者にスクリプトを含むリクエストを送信させる。送信したスクリプトがページ内に差し込まれる脆弱性を利用して、リクエストを送信したページ上でスクリプトを実行させる送信したスクリプトはサーバーに保存されない。 DOMベース 第三者にスクリプトを含むリクエストを送信させ、クライアントサイドスクリプトの脆弱性を利用する。 対応方法 出力時にエスケープして攻撃コードを無効化する。 厳密に値を入力検査する インラインスクリプトにユーザーの入力を展開しない。 Content Security Policy（CSP）を設定する インラインスクリプトの実行を禁止すれば、混入したコードの実行自体を防げる。 エスケープ漏れが起きたときの多層防御として働く。 文字コードを指定する レスポンスヘッダーに適切な文字コードを指定しないと、文字化けを利用してスクリプトを混入させる隙を与えるため。 参考 スクリプトインジェクション入門 - Qiita",
     "description": "概要 サイトにスクリプトを含むリクエストを送信し、サイトを訪れた第三者に悪意のあるコードを実行させる脆弱性の総称。\n攻撃対象のサイトだけでなく、別サイトへのリダイレクトなど複数サイトを横断させてスクリプトを実行させることもできることからクロスサイトスクリプティング（XSS）とも呼ばれる。",
     "tags": [],
     "title": "スクリプトインジェクション / クロスサイトスクリプティング（XSS）",
@@ -609,8 +601,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "TIL : Today I learned \u003e Security",
-    "content": "概要 第三者のセッションを乗っ取り、不正な操作を行う。\nリファラによる漏洩 XSSによるセッションIDの入手 セッション固定攻撃によるセッションIDの指定 通信データの盗聴、ウイルスによるID取得 セッション固定攻撃 攻撃対象のユーザに対して任意のセッションIDを強制的に利用させる。\n下記の場合に起きうる。\nログイン前にセッションを有効化 ログイン処理時に外部から与えられたセッションIDを使ってしまうシステム 自身が発行したものでないセッションIDを受け入れてしまう「セッションアダプション」という脆弱性を抱えている また「Cookie Monsterバグ1」を利用し、Cookieに意図的なIDを埋め込んでセッション固定攻撃を仕掛ける方法もある。\n対応方法 セッションIDをCookiのみで大なう セッションハイジャックされていないかチェック 一連のリクエウトの最中にクライアントのヘッダーに変化がないか（Accept-CharsetやUser-Agentなど） 重要な処理を行う前にパスワードを入力させる。 ログイン後にセッションIDの再発行を行う。 参考 セッション固定攻撃 | 鳩丸ぐろっさり (用語集) ブラウザの不具合を利用してセカンドレベルドメインに対して任意のCookieをセットできる ↩︎",
-    "description": "概要 第三者のセッションを乗っ取り、不正な操作を行う。\nリファラによる漏洩 XSSによるセッションIDの入手 セッション固定攻撃によるセッションIDの指定 通信データの盗聴、ウイルスによるID取得 セッション固定攻撃 攻撃対象のユーザに対して任意のセッションIDを強制的に利用させる。",
+    "content": "概要 第三者のセッションを乗っ取り、不正に操作する。\nリファラによる漏洩 XSSによるセッションIDの入手 セッション固定攻撃によるセッションIDの指定 通信データの盗聴、ウイルスによるID取得 セッション固定攻撃 攻撃対象のユーザに対して任意のセッションIDを強制的に利用させる。\n下記の場合に起きうる。\nログイン前にセッションを有効化 ログイン処理時に外部から与えられたセッションIDを使ってしまうシステム 自身が発行したものでないセッションIDを受け入れてしまう「セッションアダプション」という脆弱性を抱えている また「Cookie Monsterバグ1」を利用し、Cookieに意図的なIDを埋め込んでセッション固定攻撃を仕掛ける方法もある。\n対応方法 セッションIDはCookieだけで受け渡す。URLに含めない。 CookieにSecure属性とHttpOnly属性を設定する。 ログイン後にセッションIDを再発行する。 重要な処理を行う前にパスワードを入力させる。 かつてはリクエスト中のUser-AgentやAccept-Charsetの変化を検知する方法も紹介されていた。 ブラウザの自動更新などの正当な変化で誤検知するため、現在では推奨されない。\n参考 セッション固定攻撃 | 鳩丸ぐろっさり (用語集) ブラウザの不具合を利用してセカンドレベルドメインに対して任意のCookieをセットできる ↩︎",
+    "description": "概要 第三者のセッションを乗っ取り、不正に操作する。\nリファラによる漏洩 XSSによるセッションIDの入手 セッション固定攻撃によるセッションIDの指定 通信データの盗聴、ウイルスによるID取得 セッション固定攻撃 攻撃対象のユーザに対して任意のセッションIDを強制的に利用させる。",
     "tags": [],
     "title": "セッションハイジャック",
     "uri": "/til/security/session_hijack/index.html"
@@ -625,7 +617,7 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "TIL : Today I learned \u003e Security",
-    "content": "概要 入力ファイル名のセキュリティ検証/無害化が不十分なため、ファイルAPIに対して「親ディレクトリへの横断 (traverse)」を示すような文字がすり抜けて渡されてしまう。 ディレクトリを遡って任意のファイルにアクセスできてしまう。\n対策 リクエストからの値をファイル名などに利用しない。 読み込みを許可するファイルをホワイトリスト化しておき、チェックする。 ファイル名への使用を禁止する文字列をブラックリスト化しておき、チェックする。 言語・WAFの機能を利用する。 PHP → open_basedir 参考 ディレクトリトラバーサル - Wikipedia",
+    "content": "概要 入力ファイル名のセキュリティ検証/無害化が不十分なため、ファイルAPIに対して「親ディレクトリへの横断 (traverse)」を示すような文字がすり抜けて渡されてしまう。 ディレクトリを遡って任意のファイルにアクセスできてしまう。\n対策 リクエストからの値をファイル名などに利用しない。 読み込みを許可するファイルを許可リスト（allowlist）にしておき、チェックする。 ファイル名への使用を禁止する文字列を拒否リスト（denylist）にしておき、チェックする。 言語・WAFの機能を利用する。 PHP → open_basedir 参考 ディレクトリトラバーサル - Wikipedia",
     "description": "概要 入力ファイル名のセキュリティ検証/無害化が不十分なため、ファイルAPIに対して「親ディレクトリへの横断 (traverse)」を示すような文字がすり抜けて渡されてしまう。 ディレクトリを遡って任意のファイルにアクセスできてしまう。",
     "tags": [],
     "title": "ディレクトリトラバーサル",
@@ -633,7 +625,7 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "TIL : Today I learned \u003e Web",
-    "content": "Webサイトのパフォーマンスに関する予算（メトリクスの上限値）を定義し、リリース時に遵守することでパフォーマンスを継続的に良い状態に保つ仕組み。\nメトリクスの種類は下記がある。\nMilestone : ページローディングの開始から完了までの時間 First Contentful Paint Time to Interactive Speed Index Quantity : アセットや通信量 JavaScriptのファイル合図 HTTPリクエスト数 クリティカルレンダリングパスの数 Rules PageSpeed InsightsやLighthouseなどのスコア CIにチェック機構を組み込むことで継続的に監視すると良い。\nGoogleChromeLabs/lighthousebot: Run Lighthouse in CI, as a web service, using Docker. Pass/Fail GH pull requests. siddharthkp/bundlesize: Keep your bundle size in check SpeedCurve: Monitor front-end performance 参考 Google Developers Japan: パフォーマンスバジェットのご紹介 - ウェブパフォーマンスのための予算管理",
+    "content": "Webサイトのパフォーマンスに関する予算（メトリクスの上限値）を定義し、リリース時に遵守することでパフォーマンスを継続的に良い状態に保つ仕組み。\nメトリクスの種類は下記がある。\nMilestone : 読み込みや応答性を表す指標 Largest Contentful Paint (LCP) : 主要なコンテンツが表示されるまでの時間 Interaction to Next Paint (INP) : 操作に対する応答性 Cumulative Layout Shift (CLS) : 表示のずれの大きさ First Contentful Paint (FCP) : 最初の描画までの時間 Quantity : アセットや通信量 JavaScriptのファイルサイズ HTTPリクエスト数 クリティカルレンダリングパスの数 Rules PageSpeed InsightsやLighthouseなどのスコア LCP、INP、CLSの3つはCore Web Vitalsと呼ばれ、現在の中心的な指標である。 INPは2024年3月にFirst Input Delay (FID)を置き換えた。 かつて使われていたTime to InteractiveはLighthouseから削除されている。\nCIにチェック機構を組み込むことで継続的に監視すると良い。\nLighthouse CI siddharthkp/bundlesize: Keep your bundle size in check SpeedCurve: Monitor front-end performance 参考 Google Developers Japan: パフォーマンスバジェットのご紹介 - ウェブパフォーマンスのための予算管理",
     "description": "Webサイトのパフォーマンスに関する予算（メトリクスの上限値）を定義し、リリース時に遵守することでパフォーマンスを継続的に良い状態に保つ仕組み。",
     "tags": [],
     "title": "パフォーマンスバジェット",
@@ -649,8 +641,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "TIL : Today I learned \u003e Cygwin",
-    "content": "chereを使うと簡単。Cygwinのパッケージインストーラーから探して入れておく。 実行時は管理者権限でCygwinを起動しておく必要がある。\nchere -ian -e \"Open in Cygwin\" -t mintty -s zsh 【chere】右クリックから現在のフォルダをCygwinのBashで開く(ショートカットキー対応)",
-    "description": "chereを使うと簡単。Cygwinのパッケージインストーラーから探して入れておく。 実行時は管理者権限でCygwinを起動しておく必要がある。",
+    "content": "Cygwin自体は現存するが、同じ用途は現在WSL2で満たせることが多い。\nchereを使うと簡単。Cygwinのパッケージインストーラーから探して入れておく。 実行時は管理者権限でCygwinを起動しておく必要がある。\nchere -ian -e \"Open in Cygwin\" -t mintty -s zsh 【chere】右クリックから現在のフォルダをCygwinのBashで開く(ショートカットキー対応)",
+    "description": "Cygwin自体は現存するが、同じ用途は現在WSL2で満たせることが多い。\nchereを使うと簡単。Cygwinのパッケージインストーラーから探して入れておく。 実行時は管理者権限でCygwinを起動しておく必要がある。",
     "tags": [],
     "title": "フォルダーの右クリックからCygwinを開くメニューを追加する",
     "uri": "/til/cygwin/open_from_context_menu/index.html"
@@ -673,7 +665,7 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "TIL : Today I learned \u003e Mac OS",
-    "content": "全画面 Command + Shift + 3\n指定範囲内 Command + Shift + 4\n影付きウィンドウ Command + Shift + 4 + Space\n影無しウィンドウ Command + Shift + 4 + Space + Option\n参考 知らなかった！Macでウィンドウを指定してキャプチャできるショートカットが超便利だった！ | 男子ハック",
+    "content": "全画面 Command + Shift + 3\n指定範囲内 Command + Shift + 4\n影付きウィンドウ Command + Shift + 4 + Space\n影無しウィンドウ Command + Shift + 4 + Space + Option\nスクリーンショットツールバー Command + Shift + 5\n範囲指定や画面収録をまとめて扱える。保存先やタイマーもここで設定できる。\n参考 知らなかった！Macでウィンドウを指定してキャプチャできるショートカットが超便利だった！ | 男子ハック",
     "description": "全画面 Command + Shift + 3\n指定範囲内 Command + Shift + 4\n影付きウィンドウ Command + Shift + 4 + Space\n影無しウィンドウ Command + Shift + 4 + Space + Option",
     "tags": [],
     "title": "画面キャプチャを撮る",
@@ -685,23 +677,31 @@ var relearn_searchindex = [
     "description": "PHPやnodeなどの言語を切り替えて使う際、opensslやicu4cなど動的にリンクされるモジュールのバージョンが変わってしまい動かなくなることがある。",
     "tags": [],
     "title": "古いバージョンのモジュールをインストールする",
-    "uri": "/til/homebrew/install_old_versionn/index.html"
+    "uri": "/til/homebrew/install_old_version/index.html"
   },
   {
     "breadcrumb": "TIL : Today I learned \u003e Git",
-    "content": "Gitlabなどの場合は下記の設定で証明書の検証を行わないようにする必要がある。\n$ git config --global http.sslverify false",
-    "description": "Gitlabなどの場合は下記の設定で証明書の検証を行わないようにする必要がある。\n$ git config --global http.sslverify false",
+    "content": "Gitlabなどの場合、証明書の検証で失敗することがある。\n検証そのものを無効化する方法は広く知られているが、--globalで設定すると全リポジトリの通信で検証が無効になるため避けたい。 CA証明書を持っているなら、対象ホストにだけ設定するのがよい。\n$ git config --global http.https://gitlab.example.com/.sslCAInfo /path/to/ca.crt どうしても検証を切る場合も、対象のリポジトリの中だけにとどめる。\n$ git config --local http.sslverify false",
+    "description": "Gitlabなどの場合、証明書の検証で失敗することがある。\n検証そのものを無効化する方法は広く知られているが、--globalで設定すると全リポジトリの通信で検証が無効になるため避けたい。 CA証明書を持っているなら、対象ホストにだけ設定するのがよい。",
     "tags": [],
     "title": "自己証明書でホストされたgitリポジトリにアクセスする",
     "uri": "/til/git/ignore_ssl_verify/index.html"
   },
   {
     "breadcrumb": "TIL : Today I learned \u003e Jenkins",
-    "content": "JENKINS_ARGSとして--sessionTimeoutでログアウトまでの時間を分で与える。\n$ sudo vim /etc/sysconfig/jenkins ## Type: string ## Default: \"\" ## ServiceRestart: jenkins # # Pass arbitrary arguments to Jenkins. # Full option list: java -jar jenkins.war --help # JENKINS_ARGS=\"--sessionTimeout=1440\" $ sudo service jenkins restart Amazon Linux/CentOSのJenkinsでセッションタイムアウトを24時間にする",
-    "description": "JENKINS_ARGSとして--sessionTimeoutでログアウトまでの時間を分で与える。\n$ sudo vim /etc/sysconfig/jenkins ## Type: string ## Default: \"\" ## ServiceRestart: jenkins # # Pass arbitrary arguments to Jenkins. # Full option list: java -jar jenkins.war --help # JENKINS_ARGS=\"--sessionTimeout=1440\" $ sudo service jenkins restart Amazon Linux/CentOSのJenkinsでセッションタイムアウトを24時間にする",
+    "content": "JENKINS_ARGSとして--sessionTimeoutでログアウトまでの時間を分で与える。\n設定ファイルの位置はパッケージのバージョンによって異なる。 /etc/sysconfig/jenkinsがある場合はそこに書く。\n$ sudo vim /etc/sysconfig/jenkins JENKINS_ARGS=\"--sessionTimeout=1440\" $ sudo service jenkins restart 新しいパッケージにはこのファイルがない。その場合はsystemdのdrop-inで指定する。\n$ sudo systemctl edit jenkins $ sudo systemctl restart jenkins Amazon Linux/CentOSのJenkinsでセッションタイムアウトを24時間にする",
+    "description": "JENKINS_ARGSとして--sessionTimeoutでログアウトまでの時間を分で与える。\n設定ファイルの位置はパッケージのバージョンによって異なる。 /etc/sysconfig/jenkinsがある場合はそこに書く。",
     "tags": [],
     "title": "自動ログアウトまでの時間を長くする",
     "uri": "/til/jenkins/change_session_timeout/index.html"
+  },
+  {
+    "breadcrumb": "TIL : Today I learned \u003e CircleCI",
+    "content": "Orbやコマンドを使うと、実際に実行される設定が読み取りにくくなる。 circleci config processを使うと、それらを展開した結果を確認できる。\n$ circleci config process .circleci/config.yml Orbの解決結果がコメントで示され、展開後の設定が出力される。\n# Orb 'sue445/ruby-orbs@1.4.3' resolved to 'sue445/ruby-orbs@1.4.3' version: 2 jobs: rails_minitest: working_directory: ~/workspace docker: - image: circleci/ruby:2.6.1-node-browsers steps: - checkout - run: command: | bundle install --jobs=4 --retry=3 --path=vendor/bundle name: bundle install 末尾には元の設定ファイルがコメントとして付く。\nかつては「2.1形式はローカル実行できないため2.0形式に変換する」という使い方をしていた。 現在は2.0形式そのものが非推奨であり、この用途では使わない。 設定の中身を確認したいときに使うコマンドである。\n参考 Using the CircleCI Local CLI - CircleCI",
+    "description": "Orbやコマンドを使うと、実際に実行される設定が読み取りにくくなる。 circleci config processを使うと、それらを展開した結果を確認できる。\n$ circleci config process .circleci/config.yml Orbの解決結果がコメントで示され、展開後の設定が出力される。",
+    "tags": [],
+    "title": "設定ファイルのOrbやコマンドを展開して確認する",
+    "uri": "/til/circleci/convert_20_to_21/index.html"
   },
   {
     "breadcrumb": "TIL : Today I learned \u003e CircleCI",
@@ -713,8 +713,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "TIL : Today I learned \u003e CircleCI",
-    "content": "同じブランチに対してトリガーされ、実行待ちとなっているビルドを検知して自動的にキャンセルできる。\nプロジェクト設定（BUILD SETTINGS \u003e Advanced Settings）にある下記2つを有効化することで使用できる。\nAuto-cancel redundant builds Enable pipelines 参考 CircleCI の Auto-cancel redundant builds が Workflows にも対応した - kakakakakku blog",
-    "description": "同じブランチに対してトリガーされ、実行待ちとなっているビルドを検知して自動的にキャンセルできる。\nプロジェクト設定（BUILD SETTINGS \u003e Advanced Settings）にある下記2つを有効化することで使用できる。",
+    "content": "同じブランチに対してトリガーされ、実行待ちとなっているビルドを検知して自動的にキャンセルできる。\nプロジェクト設定のAdvancedにあるAuto-cancel redundant workflowsを有効化する。\nかつてはこの機能を使うのにEnable pipelinesの有効化も必要だった。 現在pipelinesは既定で有効であり、その項目は存在しない。\n参考 CircleCI の Auto-cancel redundant builds が Workflows にも対応した - kakakakakku blog",
+    "description": "同じブランチに対してトリガーされ、実行待ちとなっているビルドを検知して自動的にキャンセルできる。\nプロジェクト設定のAdvancedにあるAuto-cancel redundant workflowsを有効化する。",
     "tags": [],
     "title": "連続してトリガーされたビルドを自動キャンセルする",
     "uri": "/til/circleci/auto-cancel_redundant_builds/index.html"
