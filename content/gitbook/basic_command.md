@@ -2,50 +2,33 @@
 title = "Gitbookの基本操作"
 +++
 
-この記事の内容は古い。npmの`gitbook`パッケージは deprecated となり、`gitbook-cli`も2017年で更新が止まっている。
+Markdownで書いたファイルをHTML/EPUB/PDFに変換して公開するツールだった。
+
+npmの`gitbook`パッケージはdeprecatedとなり、最終リリースは2018年10月である。
+CLIの`gitbook-cli`も2017年7月から更新が止まっている。
 現在のGitBookはホスティング製品であり、`GitbookIO/gitbook`リポジトリはドキュメントサイトのフロントエンドで別物である。
-同じ用途にはVitePress、Docusaurus、mdBook、Hugoなどを使う。
 
-## Gitbookとは
+## 当時の使い方
 
-Markdownで書いたファイルをHTML/EPUB/PDFに変換して公開できるツール。
-ホスティングサービスと、CLIツールが存在する。
-
-* [ホスティングサービス](http://www.gitbook.com/)
-* [CLIツール](https://github.com/GitbookIO/gitbook)
-
-## Gitbookの作り方
-
-詳細な説明は下記にある。
-
-* [GitBook Documentation](http://help.gitbook.com/index.html)
-
-CLIツールを動かすにはnode.jsが必要。
-node.jsをインストール後、npmでgitbookをインストールする。
+CLIツールを動かすにはNode.jsが必要だった。
 
 ```
 $ npm install -g gitbook-cli
 ```
 
-gitbookを作るには最低限2つのファイルが必要。
+最低限2つのファイルが要る。`SUMMARY.md`でリンクしたMarkdownファイルだけが処理された。
 
 * README.md
-* SUMMARY.md
-    * 目次
-    * ここでリンクを貼ったMarkdownファイルのみが処理される
+* SUMMARY.md（目次）
 
-htmlへの変換は下記コマンドで行う。
+HTMLへの変換は`gitbook build`で行う。
+PDFへの変換は`gitbook pdf`だが、事前に[Calibre](https://calibre-ebook.com/)のインストールが必要だった。
 
-```
-$ gitbook build
-```
+## 現在の選択肢
 
-## PDFに変換する
+Markdownからドキュメントサイトを作る用途では下記がある。
 
-[Calibre](https://calibre-ebook.com/)を事前にインストールしておく。
-
-PDFへの変換は下記コマンドで行う。
-
-```
-$ gitbook pdf
-```
+* [VitePress](https://vitepress.dev/)
+* [Docusaurus](https://docusaurus.io/)
+* [mdBook](https://rust-lang.github.io/mdBook/)
+* [Hugo](https://gohugo.io/)（このサイト自体がHugoで作られている）

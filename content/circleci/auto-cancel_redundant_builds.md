@@ -4,12 +4,10 @@ title = "連続してトリガーされたビルドを自動キャンセルす�
 
 同じブランチに対してトリガーされ、実行待ちとなっているビルドを検知して自動的にキャンセルできる。
 
-プロジェクト設定（BUILD SETTINGS > Advanced Settings）にある下記2つを有効化することで使用できる。
+プロジェクト設定の`Advanced`にある`Auto-cancel redundant workflows`を有効化する。
 
-1. Auto-cancel redundant builds
-2. Enable pipelines
-
-この記事の手順は古い。現在のCircleCIではpipelinesが既定で有効であり、`Enable pipelines`の項目は存在しない。
+かつてはこの機能を使うのに`Enable pipelines`の有効化も必要だった。
+現在pipelinesは既定で有効であり、その項目は存在しない。
 
 ## 参考
 

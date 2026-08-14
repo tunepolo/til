@@ -10,11 +10,11 @@ title = "Node.jsのサポート方針"
 Current release status終了後の対応は以下の通り。
 
 - 奇数バージョン : サポート終了
-- 偶数バージョン : Active LTS statusに入る。
+- 偶数バージョン : Active LTS statusに入る
 
-30か月というのはActive LTSの期間ではなく、リリースからの総サポート期間である。
-Active LTSのあとMaintenance LTSに移り、あわせて30か月となる。
+偶数バージョンはActive LTSを経てMaintenance LTSに移る。
+リリースからおよそ30か月でサポートが終了する。30か月はActive LTS単体の期間ではない。
 
 サービスにはActive LTSかMaintenance LTS releasesを使用するべきである。
 
-- [Release | Node.js](https://nodejs.org/en/about/releases/)
+- [Release | Node.js](https://nodejs.org/en/about/previous-releases)

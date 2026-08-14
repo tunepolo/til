@@ -21,7 +21,7 @@ $ heroku login
 $ heroku keys:add
 ```
 
-## 新しいアプリケーションを作成する。
+## 新しいアプリケーションを作成する
 
 ```
 $ heroku create
@@ -29,8 +29,10 @@ $ heroku create
 
 ## Herokuにデプロイする
 
+デプロイ先のブランチ名はリポジトリの既定ブランチに合わせる。
+
 ```
-$ git push heroku master
+$ git push heroku main
 ```
 
 ## Herokuにデプロイされたページを開く
