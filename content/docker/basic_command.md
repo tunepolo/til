@@ -36,6 +36,23 @@ Deleted: sha256:c374bc45818d75cc05e893b7faa35af3517caae9ef789e949bf847c7513a4e56
 Deleted: sha256:767f936afb51c8a3ad9a96592a4be092048bb70f2ca410028a0b3f64b826acbb
 ```
 
+## 不要なリソースをまとめて削除
+
+```
+$ docker system prune
+```
+
+停止したコンテナ、使われていないネットワーク、danglingなイメージが削除される。
+
+## Compose
+
+Compose V2以降はDocker CLIのサブコマンドになっている。
+ハイフンのある`docker-compose`ではなく`docker compose`を使う。
+
+```
+$ docker compose up -d
+```
+
 ## 参考文献
 
 * [Docker入門（第二回）～Dockerセットアップ、コンテナ起動～](https://knowledge.sakura.ad.jp/13795/)

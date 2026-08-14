@@ -4,6 +4,9 @@ title = "自動ログアウトまでの時間を長くする"
 
 `JENKINS_ARGS`として`--sessionTimeout`でログアウトまでの時間を分で与える。
 
+設定ファイルの位置はパッケージのバージョンによって異なる。
+`/etc/sysconfig/jenkins`が存在しない場合は、systemdのdrop-inで指定する。
+
 ```
 $ sudo vim /etc/sysconfig/jenkins
 

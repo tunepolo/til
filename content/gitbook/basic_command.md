@@ -2,6 +2,10 @@
 title = "Gitbookの基本操作"
 +++
 
+この記事の内容は古い。npmの`gitbook`パッケージは deprecated となり、`gitbook-cli`も2017年で更新が止まっている。
+現在のGitBookはホスティング製品であり、`GitbookIO/gitbook`リポジトリはドキュメントサイトのフロントエンドで別物である。
+同じ用途にはVitePress、Docusaurus、mdBook、Hugoなどを使う。
+
 ## Gitbookとは
 
 Markdownで書いたファイルをHTML/EPUB/PDFに変換して公開できるツール。

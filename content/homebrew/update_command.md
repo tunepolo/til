@@ -16,8 +16,10 @@ $ brew upgrade
 
 ## Homebrew Caskでインストールしたソフトウェアのアップデート
 
+Homebrew 2.6 で `brew cask` サブコマンドは廃止された。`--cask` オプションを使う。
+
 ```
-$ brew cask upgrade
+$ brew upgrade --cask
 ```
 
 ## mas-cliでインストールしたソフトウェアのアップデート

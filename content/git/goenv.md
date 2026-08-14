@@ -30,4 +30,8 @@ $ goenv global 1.11.4
 goのバージョンアップにgoenvが(またはHomebrewで入れるgoenvが)追従できておらず、Homebrewの方が新しかった。
 複数goバージョンを使い分ける必要ができたときに検討する。
 
+Go 1.21以降はgo.mod の`toolchain`ディレクティブと`GOTOOLCHAIN`環境変数により、
+Go自身が必要なバージョンを取得して切り替える。
+そのためgoenvのようなバージョン管理ツールが不要な場面は増えている。
+
 * [Golangをgoenvを使ってインストールしてみた - Qiita](https://qiita.com/walkers/items/761b2a5e58849176a633)

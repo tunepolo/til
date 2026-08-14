@@ -3,5 +3,7 @@ title = "npmのバージョンを上げる"
 +++
 
 ```
-# npm update -g npm
+$ npm install -g npm@latest
 ```
+
+`npm update -g npm`でも上がるが、バージョンを明示するほうが確実である。

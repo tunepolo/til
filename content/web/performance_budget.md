@@ -17,9 +17,13 @@ Webサイトのパフォーマンスに関する予算（メトリクスの上�
 - Rules
   - PageSpeed InsightsやLighthouseなどのスコア
 
+Milestoneの指標は書いた当時から入れ替わっている。
+現在の中心はCore Web Vitalsの3つ、すなわちLCP、INP、CLSである。
+INPは2024年3月にFIDを置き換えた。Time to InteractiveはLighthouseから削除されている。
+
 CIにチェック機構を組み込むことで継続的に監視すると良い。
 
-- [GoogleChromeLabs/lighthousebot: Run Lighthouse in CI, as a web service, using Docker. Pass/Fail GH pull requests.](https://github.com/GoogleChromeLabs/lighthousebot)
+- [GoogleChromeLabs/lighthousebot](https://github.com/GoogleChromeLabs/lighthousebot) （アーカイブ済み。現在はLighthouse CIを使う）
 - [siddharthkp/bundlesize: Keep your bundle size in check](https://github.com/siddharthkp/bundlesize)
 - [SpeedCurve: Monitor front-end performance](https://speedcurve.com/)
 

@@ -15,7 +15,7 @@ $ rbenv version
 
 ```shell
 $ brew update
-$ brew update rbenv ruby-build
+$ brew upgrade rbenv ruby-build
 ```
 
 ## rbenvで入れたgemをまとめて更新する

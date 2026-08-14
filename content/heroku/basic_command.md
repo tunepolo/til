@@ -2,6 +2,8 @@
 title = "Herokuコマンドの基本操作"
 +++
 
+Herokuの無料プランは2022年11月に終了した。現在は有料プランの契約が必要である。
+
 ## インストール & セットアップ
 
 [The Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)を参考にインストールする。
