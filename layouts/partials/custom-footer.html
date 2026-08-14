@@ -1,0 +1,7 @@
+{{- /* 日本語検索のためにトークナイザを差し替える。詳細は
+       assets/js/relearn-ja-tokenizer.js のコメントを参照。
+       defer なので文書順で lunr.ja.min.js の後に実行される。 */ -}}
+{{- with resources.Get "/js/relearn-ja-tokenizer.js" }}
+  {{- $js := . | minify | fingerprint }}
+  <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
+{{- end }}
