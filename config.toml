@@ -1,51 +1,53 @@
 baseURL = "https://tunepolo.github.io/til/"
 
-languageCode = "ja-jp"
-DefaultContentLanguage = "ja"
+locale = "ja-jp"
+defaultContentLanguage = "ja"
 title = "Today 'tunepolo' Leaned"
-theme = "hugo-theme-techdoc"
+theme = "hugo-theme-relearn"
 
-hasCJKLanguage = "true"
-enableGitInfo = "true"
+hasCJKLanguage = true
+enableGitInfo = true
+
+# 検索は relearn 7.0.0 以降テーマ側が自動で組み込むため
+# search / searchpage を outputs に書いてはいけない
+[outputs]
+home = ["html", "rss"]
+section = ["html", "rss"]
+page = ["html"]
 
 [params]
-    github_repository = "https://github.com/tunepolo/til"
-    github_doc_repository = "https://github.com/tunepolo/til"
+    # 編集リンク
+    editURL = "https://github.com/tunepolo/til/edit/master/content/"
 
-    menu_style = "slide-menu"
-
-    # OGP setting
-    title = "Today 'tunepolo' Leaned"
+    # OGP
     images = ["images/love-to-learn.jpg"]
 
-		# Analytics
-		google_analytics_id = "UA-165624930-1"
-		google_site_verification = "iHlDL3Ls94pRZsoFCVlVzdh6ht2VNVa7txVK-0YcPjg"
+    # 折りたたんだ状態で左メニューを表示する
+    alwaysopen = false
+    collapsibleMenu = true
 
-    # Theme color
-    # See color value reference https://developer.mozilla.org/en-US/docs/Web/CSS/color
-    custom_font_color = ""
-    custom_background_color = "#cc7db1"
+    # 各ページに最終更新日と Git の情報を出す
+    disableToc = false
 
-    # path name excluded from documentation menu
-    menu_exclusion = []
-
-[menu]
-    [[menu.main]]
-        name = "Home"
-        url = "/"
-        weight = 1
+# 配色（ライト / ダーク / OS 追従）
+[[params.themeVariant]]
+    identifier = "auto"
+    name = "Auto"
+    auto = ["relearn-light", "relearn-dark"]
+[[params.themeVariant]]
+    identifier = "relearn-light"
+    name = "Light"
+[[params.themeVariant]]
+    identifier = "relearn-dark"
+    name = "Dark"
 
 # Markup configure section
 # See https://gohugo.io/getting-started/configuration-markup/
 [markup]
     defaultMarkdownHandler = "goldmark"
     [markup.goldmark.renderer]
-        unsafe= true
+        unsafe = true
     [markup.tableOfContents]
         startLevel = 2
         endLevel = 4
         ordered = false
-
-[outputs]
-home = ["HTML", "RSS"]
