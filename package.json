@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/tunepolo/til#readme",
   "devDependencies": {
-    "editorconfig-checker": "6.1.1",
+    "editorconfig-checker": "6.2.0",
     "textlint": "15.8.0",
     "textlint-filter-rule-comments": "1.3.0",
     "textlint-filter-rule-whitelist": "2.0.0",
